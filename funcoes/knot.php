@@ -1,3 +1,5 @@
 <?php
 
-    echo "Um nó vale mais que doze pontas.";
+    echo "<p>Um nó vale mais que doze pontas.</p>";
+
+?>
