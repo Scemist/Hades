@@ -1,5 +1,11 @@
-const requisicao = () => {
+const inicio = () => {
 
+    console.log('Piso molhado.')
 }
 
-requisicao();
+const requisicao = () => {
+
+    const requisicao = true
+}
+
+inicio()

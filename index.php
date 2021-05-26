@@ -13,5 +13,9 @@
         <h1>
             Hades_
         </h1>        
+
+        <?php include_once 'funcoes/knot.php' ?>
+
+        <script src="funcoes/slip.js"></script>
     </body>
 </html>
