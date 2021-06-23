@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap');
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    background-image: linear-gradient(to right bottom, rgb(36, 3, 60), rgb(6, 51, 50));
+    display: flex;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* Fonte */
+
+#dark {
+    color: darkslategrey;
+}
+
+@media (max-width: 720px) {
+   
+    h1, h2, h3, h4, h5, h6, p, label, input {
+        color: snow;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    p {
+        font-size: 4vw;
+    }
+
+}
+
+@media (min-width: 720px) {
+   
+    h1, h2, h3, h4, h5, h6, p, label, input {
+        color: snow;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.7rem;
+    }
+}
