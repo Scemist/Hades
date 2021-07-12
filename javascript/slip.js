@@ -26,5 +26,17 @@ const requisicao = () => {
     })
 }
 
+const arquivo = () => {
+
+    const salvar = window.document.querySelector('#salvar');
+
+    salvar.addEventListener('click', () => {
+
+        const corpo = window.document.querySelector('#p-corpo').innerHTML
+        window.document.querySelector('#corpo').value = corpo
+    })
+}
+
 inicio()
 requisicao()
+arquivo()
