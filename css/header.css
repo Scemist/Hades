@@ -1,3 +1,51 @@
+.nav-ativada {
+    display: flex;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid snow;
+    margin-bottom: 2rem;
+    justify-content: space-around;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.menu  {
+    display: none;
+    padding: 6px 14px;
+}
+
+@media (max-width: 720px) {
+
+    header {
+        justify-content: space-between;
+    }
+
+    .menu {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .barra {
+
+        height: 2px;
+        background-color: snow;
+        margin: 2px;
+        width: 30px;
+    }
+
+    nav {
+        display: none;
+    }
+}
+
 label {
     padding-left: 0.6rem;
     padding-right: 0.4rem;
@@ -43,17 +91,9 @@ label {
     align-self: center;
 }
 
-header {
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 2px solid snow;
-    margin-bottom: 2rem;
-    justify-content: space-around;
-}
-
 .input-grupo {
     margin: 6px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+} 

@@ -5,9 +5,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="root.css">
-        <link rel="stylesheet" href="header.css">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="css/root.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/main.css">
 
         <title>HADES</title>
     </head>
@@ -15,18 +15,26 @@
     <body>
         <header>
             <h1 id="hades">Hades_</h1>        
-            
-            <div class="input-grupo">
-                <label>Passphrase 1</label>
-                <input class="caixa" type="password">
+
+            <div class="menu">
+                <div class="barra"></div>
+                <div class="barra"></div>
+                <div class="barra"></div>
             </div>
-            
-            <div class="input-grupo">
-                <label>Passphrase 2</label>
-                <input class="caixa" type="password" name="passphrase2">
-            </div>
-            
-            <input id="requisicao" type="submit" value="ATUALIZAR">
+
+            <nav>
+                <div class="input-grupo">
+                    <label>Passphrase 1</label>
+                    <input class="caixa" type="password">
+                </div>
+                
+                <div class="input-grupo">
+                    <label>Passphrase 2</label>
+                    <input class="caixa" type="password" name="passphrase2">
+                </div>
+                
+                <input id="requisicao" type="submit" value="ATUALIZAR">
+            </nav>
             
         </header>
 
@@ -48,7 +56,7 @@
             </div>
         </main>
             
-            <script src="funcoes/slip.js"></script>
-            <script src="app.js"></script>
+            <script src="javascript/slip.js"></script>
+            <script src="javascript/app.js"></script>
     </body>
 </html>

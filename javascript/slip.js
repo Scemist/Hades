@@ -11,7 +11,7 @@ const requisicao = () => {
 
     requisicao.addEventListener('click', () => {
 
-        xhr.open("GET", "funcoes/knot.php")
+        xhr.open("GET", "../php/knot.php")
         xhr.send()
 
         xhr.onreadystatechange = function() {
