@@ -5,6 +5,12 @@
         margin: 0 1.5vh;
         padding: 25px 30px;    
     }
+
+    #titulo {
+        background-color: rgb(199, 210, 211);
+        color: darkslategrey;
+        width: 100%;
+    }
 }
 
 @media (min-width: 720px) {
@@ -14,14 +20,38 @@
         margin: 0 40px;
         padding: 25px 30px;    
     }
+
+    #titulo {
+        background-color: rgb(199, 210, 211);
+        color: darkslategrey;
+    }
 }
+
+#salvar, #titulo {
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 5px;
+    align-self: center;   
+}   
+
+#salvar {
+    background-color: teal;
+    color: seashell;
+    box-shadow: 2px 2px 15px darkslategrey;
+    width: 10rem;
+}
+
+
 
 p {
     color: darkslategrey;
     font-family: 'Montserrat', sans-serif;   
 }
 
-.card:focus, p:focus {
+.card:focus, p:focus, #titulo, #salvar {
     outline: none;
 }
 
@@ -43,16 +73,3 @@ p {
     margin-bottom: 30px;
 }
 
-#salvar {
-    background-color: teal;
-    padding: 0.6rem 1.2rem;
-    border-radius: 5px;
-    border-style: none;
-    color: seashell;
-    cursor: pointer;
-    font-weight: 600;
-    box-shadow: 2px 2px 15px darkslategrey;
-    margin: 5px;
-    width: 10rem;
-    align-self: center;   
-}

@@ -32,7 +32,7 @@ const arquivo = () => {
 
     salvar.addEventListener('click', () => {
 
-        const corpo = window.document.querySelector('#p-corpo').innerHTML
+        const corpo = window.document.querySelector('#p-corpo').innerText
         window.document.querySelector('#corpo').value = corpo
     })
 }
