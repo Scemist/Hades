@@ -56,6 +56,8 @@
                 </div>
 
                 <div class="card card-foot">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título do Arquivo...">
+
                     <input id="salvar" type="submit" value="SALVAR">
                 </div>
             </form>

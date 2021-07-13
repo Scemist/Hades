@@ -1,7 +1,10 @@
 <?php
 
-    $instancia = new arquivo ();
-    $instancia -> criar($_POST['corpo']);
+    $corpo = $_POST['corpo'];
+    $titulo = $_POST['titulo'];
+
+    $instancia = new arquivo();
+    $instancia -> criar($corpo, $titulo);
 
     class arquivo {
 
@@ -9,11 +12,12 @@
         public $titulo;
         public $corpo;
         
-        function criar($corpo) {
+        function criar($corpo, $titulo) {
 
             $this -> corpo = $corpo;
+            $this -> titulo = $titulo;
 
-            $fopen = fopen("../documentos/" . $this -> nome . ".txt", 'wb');
+            $fopen = fopen('../documentos/' . $this -> titulo . ".txt", 'wb');
             fwrite($fopen, $corpo);
             fclose($fopen);
         }
