@@ -1,3 +1,7 @@
+<?php
+    include_once 'php/arquivo.php';
+?>
+
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -6,14 +10,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/root.css">
-        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/main.css">
 
         <title>HADES</title>
     </head>
 
     <body>
-        <header>
+        <nav>
             <h1 id="hades">Hades_</h1>        
 
             <div class="menu">
@@ -22,7 +26,7 @@
                 <div class="barra"></div>
             </div>
 
-            <nav>
+            <div id="pass">
                 <div class="input-grupo">
                     <label>Passphrase 1</label>
                     <input class="caixa" type="password">
@@ -34,33 +38,64 @@
                 </div>
                 
                 <input id="requisicao" type="submit" value="ATUALIZAR">
-            </nav>
-        </header>
+            </div>
+        </nav>
 
         <main>
-            <form action="php/arquivo.php" method="POST">
-                <div class="card card-head">
-                    <h3 id="dark">Assim falou Zaratustra</h3>
-                </div>
+            <header class="card card-head">
+                <h3 id="dark">Assim falou Zaratustra</h3>
+            </header>
 
-                <div  class="card">
-                    <input type="hidden" name="corpo" id="corpo">
+            <section id="inicio">
+                <div class="card">
+                    <div>
+                        <h3 class="cabecalho">Documentos_</h3>
 
-                    <p contenteditable="true" id="p-corpo">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit <br><br>
+                        <?php
+                            $instancia = new arquivo();
+                            $arquivos = $instancia -> listar();
+                            
+                            foreach ($arquivos as $arquivo):
+                        ?>
 
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor aliquam minima suscipit doloremque repellat iste a, dignissimos qui perferendis corrupti rerum cumque aperiam nisi. In animi omnis eos aspernatur officia ea aliquid? Hic odio rerum placeat ipsam soluta voluptatum omnis a quidem excepturi reiciendis asperiores, voluptatibus quae itaque doloremque? Ullam dicta reprehenderit adipisci consequuntur deleniti itaque quo maiores nostrum sunt. Eos nam quo eveniet eius consequuntur, laboriosam pariatur accusantium nisi? Laborum, quia eum. <br><br>
-                        
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga non maiores dolorem labore. Iste ab voluptate iure dolorum veritatis repellat, cumque repudiandae, similique facilis illum quaerat maxime, nesciunt at odio? Aspernatur saepe molestias eius eos distinctio repellendus necessitatibus voluptatum, fugiat magni? Commodi iusto adipisci, voluptate odio cum impedit voluptates nihil atque itaque, tenetur dolorum cupiditate aperiam, vel nisi! Provident necessitatibus odio nesciunt quibusdam tempore! Aliquam impedit quod vero voluptas corrupti deleniti in? Sed nemo beatae in deserunt ipsa iure consequatur voluptates, exercitationem eum nulla veniam officiis nihil cum porro quisquam molestiae, mollitia corporis velit. Modi voluptas amet illo eaque quidem sequi deserunt quo quia, ipsum rerum quasi asperiores, est accusantium excepturi quibusdam. Error dolorem maxime, consequuntur omnis, quisquam dicta aliquid deleniti perspiciatis neque doloremque debitis exercitationem repudiandae, commodi animi laudantium.
-                    </p>
+                        <button class="lista">
+                            <?= $arquivo ?>
+                        </button>
+
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
                 <div class="card card-foot">
-                    <input type="text" id="titulo" name="titulo" placeholder="Título do Arquivo...">
+                    <!-- <form action="php/arquivo.php" method="POST"> -->
+                        <input type="hidden" name="tipo" value="criar">
 
-                    <input id="salvar" type="submit" value="SALVAR">
+                        <input type="text" id="titulo" class="botao" name="titulo" placeholder="Título do Arquivo...">
+
+                        <input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
+                    <!-- </form> -->
                 </div>
-            </form>
+            </section>
+            
+            <section id="texto" class="aparente">
+                <form action="php/arquivo.php" method="POST">
+                    <div class="card">
+                        <input type="hidden" name="corpo" id="corpo">
+
+                        <p contenteditable="true" id="p-corpo">
+                            Aquele que tem um porquê para viver pode suportar quase qualquer como.
+                        </p>
+                    </div>
+
+                    <div class="card card-foot">
+                        <input type="hidden" name="tipo" value="salvar">
+
+                        <input type="text" id="novotitulo" class="botao" name="titulo" placeholder="Título do Arquivo...">
+
+                        <input id="salvar" class="botao" type="submit" value="SALVAR">
+                    </div>
+                </form>
+            </section>
         </main>
             
         <script src="javascript/slip.js"></script>

@@ -27,7 +27,34 @@
     }
 }
 
-#salvar, #titulo {
+.cabecalho {
+    color: darkslategrey;
+    font-weight: 500;
+}
+
+.lista {
+    padding: 0.9rem 1.2rem;
+    border-radius: 5px;
+    width: 100%;
+    border-style: none;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 5px;
+    text-align: left;
+    background-color: darkslategrey;
+    color: floralwhite;
+    font-size: 2vh;
+}
+
+.aparente {
+    display: none;
+}
+
+#dark {
+    cursor: pointer;
+}
+
+.botao {
     padding: 0.6rem 1.2rem;
     border-radius: 5px;
     border-style: none;
@@ -37,14 +64,12 @@
     align-self: center;   
 }   
 
-#salvar {
+#salvar, #criar {
     background-color: teal;
     color: seashell;
     box-shadow: 2px 2px 15px darkslategrey;
     width: 10rem;
 }
-
-
 
 p {
     color: darkslategrey;

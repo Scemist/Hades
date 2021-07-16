@@ -3,7 +3,7 @@ const criptografia = () => {}
 const navbar = () => {
 
     const menu = document.querySelector('.menu')
-    const nav = document.querySelector('nav')
+    const pass = document.querySelector('#pass')
 
     menu.addEventListener('touchstart', () => {
 
@@ -12,7 +12,7 @@ const navbar = () => {
 
     menu.addEventListener('touchend', () => {
 
-        nav.classList.toggle('nav-ativada')
+        pass.classList.toggle('nav-ativada')
     }) 
 }
 
