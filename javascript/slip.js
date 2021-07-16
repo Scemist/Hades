@@ -1,32 +1,42 @@
-const inicio = () => {
+const iniciar = () => {
 
-    window.console.log('Chão escorregadio.')
+    const zaratustra = window.document.querySelector('#dark')
+    const texto = window.document.querySelector('#texto')
+    const inicio = window.document.querySelector('#inicio')
+
+    zaratustra.addEventListener('click', () => {
+
+        console.log('oi')
+        texto.classList.toggle('aparente');
+        inicio.classList.toggle('aparente')
+    })
 }
 
-const requisicao = () => {
+const criarArquivo = () => {
 
-    const requisicao = window.document.querySelector('#requisicao')
-    const conteudo = window.document.querySelector('#conteudo')
+    const criar = window.document.querySelector('#criar')
     const xhr = new XMLHttpRequest()
 
-    requisicao.addEventListener('click', () => {
+    criar.addEventListener('click', () => {
 
-        xhr.open("GET", "../php/knot.php")
-        xhr.send()
+        const titulo = window.document.querySelector('#titulo').value
+        xhr.open("POST", "../php/arquivo.php")
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('titulo=' + titulo + '&tipo=criar')
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
 
-                conteudo.innerHTML = xhr.responseText
+                console.log(xhr.responseText)
             } else {
 
-                conteudo.innerHTML = ". . ."
+                console.log('. . .')
             }
         }
     })
 }
 
-const arquivo = () => {
+const pegarTexto = () => {
 
     const salvar = window.document.querySelector('#salvar');
 
@@ -37,6 +47,6 @@ const arquivo = () => {
     })
 }
 
-inicio()
-requisicao()
-arquivo()
+iniciar()
+criarArquivo()
+pegarTexto()
