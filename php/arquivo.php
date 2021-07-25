@@ -9,14 +9,19 @@
     if ($_POST):
 
         switch ($_POST['tipo']):
-            case 'criar':
-                
+
+            case 'criar':    
                 $instancia = new arquivo();
                 $instancia -> criar($_POST['titulo']);
             break;
 
             case 'salvar':
                 echo 'salvar';
+            break;
+
+            case 'listar':
+                $instancia = new arquivo();
+                $instancia -> listar();
             break;
             
             default:
@@ -32,8 +37,8 @@
         public $corpo;
 
         function listar() {
-            
-            $diretorio = 'documentos/';
+
+            $diretorio = $_SERVER['DOCUMENT_ROOT'] . "/documentos/";
             $arquivos = scandir($diretorio);
             $arquivos = array_diff($arquivos, array('..', '.'));
 
@@ -41,7 +46,7 @@
 
                 return pathinfo($arquivo, PATHINFO_FILENAME);
             }
-
+            
             return $arquivos = array_map('pegarNome', $arquivos);
         }
         
@@ -53,7 +58,14 @@
             fwrite($arquivo, $this -> titulo);
             fclose($arquivo);
 
-            echo 'Sucesso';
+            $instancia = new arquivo();
+            $arquivos = $instancia -> listar();
+
+            $lista = json_encode($arquivos);
+
+            echo $lista;
+
+            return true;
         }
         
         function editar() {

@@ -70,7 +70,7 @@
                     <!-- <form action="php/arquivo.php" method="POST"> -->
                         <input type="hidden" name="tipo" value="criar">
 
-                        <input type="text" id="titulo" class="botao" name="titulo" placeholder="Título do Arquivo...">
+                        <input type="text" id="nome" class="botao" name="nome" placeholder="Nome do Arquivo...">
 
                         <input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
                     <!-- </form> -->
@@ -90,7 +90,7 @@
                     <div class="card card-foot">
                         <input type="hidden" name="tipo" value="salvar">
 
-                        <input type="text" id="novotitulo" class="botao" name="titulo" placeholder="Título do Arquivo...">
+                        <input type="text" id="novonome" class="botao" name="nome" placeholder="Nome do Arquivo...">
 
                         <input id="salvar" class="botao" type="submit" value="SALVAR">
                     </div>
@@ -98,7 +98,7 @@
             </section>
         </main>
             
-        <script src="javascript/slip.js"></script>
+        <script src="javascript/documento.js"></script>
         <script src="javascript/app.js"></script>
     </body>
 </html>
