@@ -1,30 +1,28 @@
 <?php
 
-    // $corpo = $_POST['corpo'];
-    // $titulo = $_POST['titulo'];
-
-    // $instancia = new arquivo();
-    // $instancia -> criar($corpo, $titulo);
-
     if ($_POST):
 
         switch ($_POST['tipo']):
 
             case 'criar':    
+
                 $instancia = new arquivo();
                 $instancia -> criar($_POST['titulo']);
             break;
 
             case 'salvar':
+
                 echo 'salvar';
             break;
 
             case 'listar':
+
                 $instancia = new arquivo();
                 $instancia -> listar();
             break;
             
             default:
+            
                 # code...
             break;
         endswitch;

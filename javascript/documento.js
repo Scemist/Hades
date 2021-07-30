@@ -1,5 +1,4 @@
-function criarListener() {
-
+function criarListener() { // Create the listener that calls the class 'document' to create a new file by Ajax
     
     const criar = window.document.querySelector('#criar')
     criar.addEventListener('click', () => {
@@ -11,7 +10,7 @@ function criarListener() {
     })
 }
 
-criarListener();
+criarListener()
 
 // ------------------------------------------------------------------------------------------
 
@@ -24,7 +23,7 @@ class documento {
         this.corpo = corpo
     }
 
-    criarArquivo() {
+    criarArquivo() { // Function that creates the new file and return the updated list of files
     
         const xhr = new XMLHttpRequest()    
 
@@ -36,26 +35,25 @@ class documento {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
 
-                var lista = JSON.parse(xhr.responseText)
+                var lista = JSON.parse(xhr.responseText) // 'lista' is the json array 
+
+                console.log(lista) // This is the result
                 
-                // construirLista(lista);
-            } else {
+                // I want to create a function that update the files list here, but i don't know how to use a forEach in JS
+                // Eu quero criar uma função que atualiza os arquivos aqui, mas eu não sei como usar o forEach no JS
+
+            } else { 
 
                 console.log('. . .')
             }
         }
 
-        return true;
-    }
-
-    listarArquivos() {
-
-        return true;
+        return true
     }
 
     salvarArquivo() {
 
-        const salvar = window.document.querySelector('#salvar');
+        const salvar = window.document.querySelector('#salvar')
     
         salvar.addEventListener('click', () => {
     
@@ -63,11 +61,11 @@ class documento {
             window.document.querySelector('#corpo').value = corpo
         })
 
-        return true;
+        return true
     }
 
     deletarArquivo() {
 
-        return true;
+        return true
     }
 }

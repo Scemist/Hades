@@ -9,6 +9,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" href="css/root.css">
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/main.css">
@@ -67,13 +68,11 @@
                 </div>
 
                 <div class="card card-foot">
-                    <!-- <form action="php/arquivo.php" method="POST"> -->
                         <input type="hidden" name="tipo" value="criar">
 
                         <input type="text" id="nome" class="botao" name="nome" placeholder="Nome do Arquivo...">
 
                         <input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
-                    <!-- </form> -->
                 </div>
             </section>
             
