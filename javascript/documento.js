@@ -37,10 +37,17 @@ class documento {
 
                 var lista = JSON.parse(xhr.responseText) // 'lista' is the json array 
 
-                console.log(lista) // This is the result
+                var matriz = []
+
+                for (var i in lista) {
+
+                    matriz.push(lista[i])
+                }
                 
-                // I want to create a function that update the files list here, but i don't know how to use a forEach in JS
-                // Eu quero criar uma função que atualiza os arquivos aqui, mas eu não sei como usar o forEach no JS
+                matriz.forEach(element => {
+                    
+                    console.log(element)
+                });
 
             } else { 
 
