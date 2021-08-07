@@ -52,6 +52,8 @@
                     <div>
                         <h3 class="cabecalho">Documentos_</h3>
 
+                        <div id="listaDocumentos">
+
                         <?php
                             $instancia = new arquivo();
                             $arquivos = $instancia -> listar();
@@ -64,6 +66,8 @@
                         </button>
 
                         <?php endforeach; ?>
+
+                        </div>
                     </div>
                 </div>
 
