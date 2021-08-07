@@ -38,7 +38,7 @@
 
             $diretorio = $_SERVER['DOCUMENT_ROOT'] . "/documentos/";
             $arquivos = scandir($diretorio);
-            $arquivos = array_diff($arquivos, array('..', '.'));
+            $arquivos = array_diff($arquivos, array('.txt', '.gitkeep', '..', '.'));
 
             function pegarNome($arquivo) {
 
@@ -62,7 +62,6 @@
             $lista = json_encode($arquivos);
 
             echo $lista;
-
             return true;
         }
         

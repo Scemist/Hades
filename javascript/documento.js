@@ -26,6 +26,7 @@ class documento {
     criarArquivo() { // Function that creates the new file and return the updated list of files
     
         const xhr = new XMLHttpRequest()    
+        const listaDocumentos = window.document.querySelector('#listaDocumentos')
 
         xhr.open("POST", "../php/arquivo.php")
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -43,18 +44,14 @@ class documento {
                     matriz.push(lista[i])
                 }
 
-                const listaDocumentos = window.document.querySelector('#listaDocumentos')
                 listaDocumentos.innerHTML = ''
 
                 matriz.forEach(nomeArquivo => {
-                    
-                    if (nomeArquivo) {
-
-                        var botao = document.createElement("button")
-                        botao.className = 'lista'
-                        botao.innerText = nomeArquivo
-                        listaDocumentos.appendChild(botao)
-                    }
+                
+                    var botao = document.createElement("button")
+                    botao.className = 'lista'
+                    botao.innerText = nomeArquivo
+                    listaDocumentos.appendChild(botao)
                 })
 
             } else { 
