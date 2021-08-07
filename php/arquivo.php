@@ -6,18 +6,19 @@
 
             case 'criar':    
 
-                $instancia = new arquivo();
-                $instancia -> criar($_POST['titulo']);
+                $instancia = new arquivo($_POST['titulo']);
+                $instancia -> criar();
             break;
 
-            case 'salvar':
+            case 'pegarConteudo':
 
-                echo 'salvar';
+                $instancia = new arquivo($_POST['titulo']);
+                $instancia -> pegarConteudo();
             break;
 
             case 'listar':
 
-                $instancia = new arquivo();
+                $instancia = new arquivo(null);
                 $instancia -> listar();
             break;
             
@@ -34,6 +35,11 @@
         public $titulo;
         public $corpo;
 
+        function __construct($titulo) {
+
+            $this -> titulo = $titulo;
+        }
+
         function listar() {
 
             $diretorio = $_SERVER['DOCUMENT_ROOT'] . "/documentos/";
@@ -48,20 +54,25 @@
             return $arquivos = array_map('pegarNome', $arquivos);
         }
         
-        function criar($titulo) {
-
-            $this -> titulo = $titulo;
+        function criar() {
 
             $arquivo = fopen('../documentos/' . $this -> titulo . ".txt", 'wb');
-            fwrite($arquivo, $this -> titulo);
+            // fwrite($arquivo, $this -> titulo);
             fclose($arquivo);
 
-            $instancia = new arquivo();
+            $instancia = new arquivo($this -> titulo);
             $arquivos = $instancia -> listar();
 
             $lista = json_encode($arquivos);
 
             echo $lista;
+            return true;
+        }
+        
+        function pegarConteudo() {
+
+            $arquivo = '../documentos/' . $this -> titulo . '.txt';
+            echo file_get_contents($arquivo);
             return true;
         }
         

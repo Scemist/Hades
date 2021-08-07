@@ -55,7 +55,7 @@
                         <div id="listaDocumentos">
 
                         <?php
-                            $instancia = new arquivo();
+                            $instancia = new arquivo(null);
                             $arquivos = $instancia -> listar();
                             
                             foreach ($arquivos as $arquivo):
