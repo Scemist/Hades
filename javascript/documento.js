@@ -36,18 +36,26 @@ class documento {
             if (xhr.readyState === 4 && xhr.status === 200) {
 
                 var lista = JSON.parse(xhr.responseText) // 'lista' is the json array 
-
                 var matriz = []
 
                 for (var i in lista) {
 
                     matriz.push(lista[i])
                 }
-                
-                matriz.forEach(element => {
+
+                const listaDocumentos = window.document.querySelector('#listaDocumentos')
+                listaDocumentos.innerHTML = ''
+
+                matriz.forEach(nomeArquivo => {
                     
-                    console.log(element)
-                });
+                    if (nomeArquivo) {
+
+                        var botao = document.createElement("button")
+                        botao.className = 'lista'
+                        botao.innerText = nomeArquivo
+                        listaDocumentos.appendChild(botao)
+                    }
+                })
 
             } else { 
 
