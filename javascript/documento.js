@@ -2,6 +2,7 @@
 
 criarListener()
 abrirListener()
+salvarListener()
 
 function criarListener() { // Cria o listener que chama a função para criar um novo arquivo por Ajax
     
@@ -25,9 +26,20 @@ function abrirListener() { // Cria o listener que chama a função para abrir o 
         arquivos[controle].addEventListener('click', function(controle) {
             
             var instancia = new documento()
-            instancia.abrirArquivo(controle)
+            globalThis.arquivoAtual = instancia.abrirArquivo(controle)
         }.bind(null, controle))
     }
+}
+
+function salvarListener() {
+
+    const salvar = window.document.querySelector('#salvar')
+
+    salvar.addEventListener('click', function() {
+
+        var instancia = new documento()
+        instancia.salvarArquivo(arquivoAtual)
+    })
 }
 
 // Classe Documento
@@ -81,15 +93,28 @@ class documento {
         return true
     }
 
-    salvarArquivo() { // Função que salva o arquivo a partir do editor
+    salvarArquivo(arquivoAtual) { // Função que salva o arquivo a partir do editor
 
-        const salvar = window.document.querySelector('#salvar')
-    
-        salvar.addEventListener('click', () => {
-    
-            const corpo = window.document.querySelector('#p-corpo').innerText
-            window.document.querySelector('#corpo').value = corpo
-        })
+        const corpo = window.document.querySelector('#p-corpo').innerText
+        const xhr = new XMLHttpRequest()
+
+        xhr.open('POST', '../php/arquivo.php')
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.send('titulo=' + arquivoAtual + '&tipo=salvar&corpo=' + corpo)
+        xhr.onreadystatechange = function() {
+
+            if (xhr.readyState === 4 && xhr.status === 200) {
+
+                if(xhr.responseText == true) {
+
+                    console.log('A vida é uma caixinha de acontecimentos violentos.')
+                    window.alert('À Bússula.')
+                } else {
+
+                    window.alert('Hm, há algo errado, Scemist')
+                }
+            }
+        }
 
         return true
     }
@@ -102,6 +127,7 @@ class documento {
         const pCorpo = window.document.querySelector('#p-corpo')
         var xhr = new XMLHttpRequest
 
+        pCorpo.innerText = ''
         texto.classList.toggle('aparente');
         inicio.classList.toggle('aparente')
 
@@ -116,6 +142,8 @@ class documento {
                 pCorpo.innerText = conteudo
             }
         }
+
+        return this.nome
     }
 
     deletarArquivo() { // Deleta o arquivo

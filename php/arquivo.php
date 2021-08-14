@@ -21,6 +21,12 @@
                 $instancia = new arquivo(null);
                 $instancia -> listar();
             break;
+
+            case 'salvar':
+
+                $instancia = new arquivo($_POST['titulo']);
+                $instancia -> salvar($_POST['corpo']);
+            break;
             
             default:
             
@@ -74,6 +80,23 @@
             $arquivo = '../documentos/' . $this -> titulo . '.txt';
             echo file_get_contents($arquivo);
             return true;
+        }
+        
+        function salvar($corpo) {
+
+            $arquivo = fopen('../documentos/' . $this -> titulo . '.txt', 'wb');
+
+            if (fwrite($arquivo, $corpo)):
+
+                fclose($arquivo);
+                echo true;
+                return true;
+            else:
+
+                fclose($arquivo);
+                echo false;
+                return false;
+            endif;
         }
         
         function editar() {

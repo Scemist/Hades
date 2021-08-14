@@ -72,32 +72,28 @@
                 </div>
 
                 <div class="card card-foot">
-                        <input type="hidden" name="tipo" value="criar">
+                    <input type="hidden" name="tipo" value="criar">
 
-                        <input type="text" id="nome" class="botao" name="nome" placeholder="Nome do Arquivo...">
+                    <input type="text" id="nome" class="botao" name="nome" placeholder="Nome do Arquivo...">
 
-                        <input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
+                    <input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
                 </div>
             </section>
             
             <section id="texto" class="aparente">
-                <form action="php/arquivo.php" method="POST">
-                    <div class="card">
-                        <input type="hidden" name="corpo" id="corpo">
+                <div class="card">
+                    <p contenteditable="true" id="p-corpo">
+                        Aquele que tem um porquê para viver pode suportar quase qualquer como.
+                    </p>
+                </div>
 
-                        <p contenteditable="true" id="p-corpo">
-                            Aquele que tem um porquê para viver pode suportar quase qualquer como.
-                        </p>
-                    </div>
+                <div class="card card-foot">
+                    <input type="hidden" name="tipo" value="salvar">
 
-                    <div class="card card-foot">
-                        <input type="hidden" name="tipo" value="salvar">
+                    <input type="text" id="novonome" class="botao" name="nome" placeholder="Nome do Arquivo...">
 
-                        <input type="text" id="novonome" class="botao" name="nome" placeholder="Nome do Arquivo...">
-
-                        <input id="salvar" class="botao" type="submit" value="SALVAR">
-                    </div>
-                </form>
+                    <input id="salvar" class="botao" type="submit" value="SALVAR">
+                </div>
             </section>
         </main>
             

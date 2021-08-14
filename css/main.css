@@ -2,11 +2,11 @@
 
     .card {
         background-color: snow;
-        margin: 0 1.5vh;
+        margin: 0 2.2vw;
         padding: 25px 30px;    
     }
 
-    #nome {
+    #nome, #novonome {
         background-color: rgb(199, 210, 211);
         color: darkslategrey;
         width: 100%;
@@ -21,7 +21,7 @@
         padding: 25px 30px;    
     }
 
-    #nome {
+    #nome, #novonome {
         background-color: rgb(199, 210, 211);
         color: darkslategrey;
     }
@@ -43,7 +43,7 @@
     text-align: left;
     background-color: darkslategrey;
     color: floralwhite;
-    font-size: 2vh;
+    font-size: 4vw;
 }
 
 .aparente {
@@ -74,10 +74,6 @@
 p {
     color: darkslategrey;
     font-family: 'Montserrat', sans-serif;   
-}
-
-.card:focus, p:focus, #titulo, #salvar {
-    outline: none;
 }
 
 .card-head {
