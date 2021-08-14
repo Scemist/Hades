@@ -3,7 +3,8 @@
 criarListener()
 abrirListener()
 
-function criarListener() { // Create the listener that calls the class 'document' to create a new file by Ajax
+function criarListener() { // Cria o listener que chama a função para criar um novo arquivo por Ajax
+    
 
     const criar = window.document.querySelector('#criar')
     criar.addEventListener('click', () => {
@@ -15,9 +16,9 @@ function criarListener() { // Create the listener that calls the class 'document
     })
 }
 
-function abrirListener() {
+function abrirListener() { // Cria o listener que chama a função para abrir o arquivo no editor
 
-    var arquivos = document.getElementsByTagName('button');
+    var arquivos = document.getElementsByTagName('button')
 
     for (var controle = 0; controle < arquivos.length; controle++) {
 
@@ -25,7 +26,7 @@ function abrirListener() {
             
             var instancia = new documento()
             instancia.abrirArquivo(controle)
-        }.bind(null, controle));
+        }.bind(null, controle))
     }
 }
 
@@ -40,7 +41,7 @@ class documento {
         this.corpo = corpo
     }
 
-    criarArquivo() { // Function that creates the new file and return the updated list of files
+    criarArquivo() { // Função que cria o novo arquivo e retorna a lista atualizada de arquivos
     
         const xhr = new XMLHttpRequest()    
         const listaDocumentos = window.document.querySelector('#listaDocumentos')
@@ -48,22 +49,21 @@ class documento {
         xhr.open("POST", "../php/arquivo.php")
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         xhr.send('titulo=' + this.nome + '&tipo=criar')
-
         xhr.onreadystatechange = function() {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
 
-                var lista = JSON.parse(xhr.responseText) // 'lista' is the json array 
+                var lista = JSON.parse(xhr.responseText)
                 var matriz = []
 
-                for (var i in lista) {
+                for (var i in lista) { // Adiciona o Objeto JSON à uma array
 
                     matriz.push(lista[i])
                 }
 
                 listaDocumentos.innerHTML = ''
 
-                matriz.forEach(nomeArquivo => {
+                matriz.forEach(nomeArquivo => { // Constrói os arquivos na array na tela
                 
                     var botao = document.createElement("button")
                     botao.className = 'lista'
@@ -72,7 +72,6 @@ class documento {
                 })
 
                 abrirListener()                
-
             } else { 
 
                 console.log('. . .')
@@ -82,7 +81,7 @@ class documento {
         return true
     }
 
-    salvarArquivo() {
+    salvarArquivo() { // Função que salva o arquivo a partir do editor
 
         const salvar = window.document.querySelector('#salvar')
     
@@ -95,7 +94,7 @@ class documento {
         return true
     }
 
-    abrirArquivo(index) {
+    abrirArquivo(index) { // Abre o arquivo no editor
 
         this.nome = document.getElementsByTagName('button')[index].innerText
         const texto = window.document.querySelector('#texto')
@@ -119,7 +118,7 @@ class documento {
         }
     }
 
-    deletarArquivo() {
+    deletarArquivo() { // Deleta o arquivo
 
         return true
     }
