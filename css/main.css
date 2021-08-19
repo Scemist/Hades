@@ -11,6 +11,10 @@
         color: darkslategrey;
         width: 100%;
     }
+
+    .lista {
+        font-size: 4vw;
+    }
 }
 
 @media (min-width: 720px) {
@@ -24,6 +28,10 @@
     #nome, #novonome {
         background-color: rgb(199, 210, 211);
         color: darkslategrey;
+    }
+
+    .lista {
+        font-size: 1.4vw;
     }
 }
 
@@ -43,7 +51,6 @@
     text-align: left;
     background-color: darkslategrey;
     color: floralwhite;
-    font-size: 4vw;
 }
 
 .aparente {
