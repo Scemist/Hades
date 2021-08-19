@@ -30,7 +30,7 @@
             
             default:
             
-                # code...
+                header('../index.php');
             break;
         endswitch;
     endif;
@@ -63,7 +63,6 @@
         function criar() {
 
             $arquivo = fopen('../documentos/' . $this -> titulo . ".txt", 'wb');
-            // fwrite($arquivo, $this -> titulo);
             fclose($arquivo);
 
             $instancia = new arquivo($this -> titulo);

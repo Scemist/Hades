@@ -31,7 +31,7 @@ function abrirListener() { // Cria o listener que chama a função para abrir o 
     }
 }
 
-function salvarListener() {
+function salvarListener() { // Cria o listener que chama a função para salvar o arquivo
 
     const salvar = window.document.querySelector('#salvar')
 
@@ -41,8 +41,6 @@ function salvarListener() {
         instancia.salvarArquivo(arquivoAtual)
     })
 }
-
-// Classe Documento
 
 class documento {
 

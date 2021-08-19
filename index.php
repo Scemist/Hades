@@ -57,15 +57,22 @@
                         <?php
                             $instancia = new arquivo(null);
                             $arquivos = $instancia -> listar();
+
+                            if (!empty($arquivos)):
                             
-                            foreach ($arquivos as $arquivo):
+                                foreach ($arquivos as $arquivo):
                         ?>
 
                         <button class="lista">
                             <?= $arquivo ?>
                         </button>
 
-                        <?php endforeach; ?>
+                        <?php 
+                                endforeach;
+                            else:
+                                echo '<p>Oras!! Não há arquivos por aqui ainda. Por que não tenta criar um?</p>';
+                            endif;
+                        ?>
 
                         </div>
                     </div>
