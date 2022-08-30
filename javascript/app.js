@@ -1,35 +1,35 @@
-const criptografia = () => {}
+const criptografia = () => { }
 
-function iniciar(){
+function iniciar() {
 
-    const zaratustra = window.document.querySelector('#dark')
-    const texto = window.document.querySelector('#texto')
-    const inicio = window.document.querySelector('#inicio')
+	const zaratustra = window.document.querySelector('#dark')
+	const texto = window.document.querySelector('#texto')
+	const inicio = window.document.querySelector('#inicio')
 
-    zaratustra.addEventListener('click', () => {
+	zaratustra.addEventListener('click', () => {
 
-        console.log('oi')
-        texto.classList.toggle('aparente');
-        inicio.classList.toggle('aparente')
-    })
+		console.log('oi')
+		texto.classList.toggle('aparente');
+		inicio.classList.toggle('aparente')
+	})
 
-    return true
+	return true
 }
 
 const navbar = () => {
 
-    const menu = document.querySelector('.menu')
-    const pass = document.querySelector('#pass')
+	const menu = document.querySelector('.menu')
+	const pass = document.querySelector('#pass')
 
-    menu.addEventListener('touchstart', () => {
+	menu.addEventListener('touchstart', () => {
 
-        navigator.vibrate(50)
-    })
+		navigator.vibrate(50)
+	})
 
-    menu.addEventListener('touchend', () => {
+	menu.addEventListener('touchend', () => {
 
-        pass.classList.toggle('nav-ativada')
-    }) 
+		pass.classList.toggle('nav-ativada')
+	})
 }
 
 

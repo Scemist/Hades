@@ -1,108 +1,100 @@
 <?php
 
-    if ($_POST):
+if ($_POST) :
+	switch ($_POST['tipo']):
+		case 'criar':
+			$instancia = new arquivo($_POST['titulo']);
+			$instancia->criar();
+			break;
 
-        switch ($_POST['tipo']):
+		case 'pegarConteudo':
+			$instancia = new arquivo($_POST['titulo']);
+			$instancia->pegarConteudo();
+			break;
 
-            case 'criar':    
+		case 'listar':
+			$instancia = new arquivo(null);
+			$instancia->listar();
+			break;
 
-                $instancia = new arquivo($_POST['titulo']);
-                $instancia -> criar();
-            break;
+		case 'salvar':
+			$instancia = new arquivo($_POST['titulo']);
+			$instancia->salvar($_POST['corpo']);
+			break;
 
-            case 'pegarConteudo':
+		default:
 
-                $instancia = new arquivo($_POST['titulo']);
-                $instancia -> pegarConteudo();
-            break;
+			header('../index.php');
+			break;
+	endswitch;
+endif;
 
-            case 'listar':
+class arquivo
+{
+	public $nome = 'arquivo';
+	public $titulo;
+	public $corpo;
 
-                $instancia = new arquivo(null);
-                $instancia -> listar();
-            break;
+	function __construct($titulo)
+	{
+		$this->titulo = $titulo;
+	}
 
-            case 'salvar':
+	function listar()
+	{
+		$diretorio = $_SERVER['DOCUMENT_ROOT'] . "/documentos/";
+		$arquivos = scandir($diretorio);
+		$arquivos = array_diff($arquivos, array('.txt', '.gitkeep', '..', '.'));
 
-                $instancia = new arquivo($_POST['titulo']);
-                $instancia -> salvar($_POST['corpo']);
-            break;
-            
-            default:
-            
-                header('../index.php');
-            break;
-        endswitch;
-    endif;
+		function pegarNome($arquivo)
+		{
+			return pathinfo($arquivo, PATHINFO_FILENAME);
+		}
 
-    class arquivo {
+		return $arquivos = array_map('pegarNome', $arquivos);
+	}
 
-        public $nome = 'arquivo';
-        public $titulo;
-        public $corpo;
+	function criar()
+	{
+		$arquivo = fopen('../documentos/' . $this->titulo . ".txt", 'wb');
+		fclose($arquivo);
 
-        function __construct($titulo) {
+		$instancia = new arquivo($this->titulo);
+		$arquivos = $instancia->listar();
 
-            $this -> titulo = $titulo;
-        }
+		$lista = json_encode($arquivos);
 
-        function listar() {
+		echo $lista;
+		return true;
+	}
 
-            $diretorio = $_SERVER['DOCUMENT_ROOT'] . "/documentos/";
-            $arquivos = scandir($diretorio);
-            $arquivos = array_diff($arquivos, array('.txt', '.gitkeep', '..', '.'));
+	function pegarConteudo()
+	{
+		$arquivo = '../documentos/' . $this->titulo . '.txt';
+		echo file_get_contents($arquivo);
+		return true;
+	}
 
-            function pegarNome($arquivo) {
+	function salvar($corpo)
+	{
+		$arquivo = fopen('../documentos/' . $this->titulo . '.txt', 'wb');
 
-                return pathinfo($arquivo, PATHINFO_FILENAME);
-            }
-            
-            return $arquivos = array_map('pegarNome', $arquivos);
-        }
-        
-        function criar() {
+		if (fwrite($arquivo, $corpo)) :
+			fclose($arquivo);
+			echo true;
+			return true;
+		else :
+			fclose($arquivo);
+			echo false;
+			return false;
+		endif;
+	}
 
-            $arquivo = fopen('../documentos/' . $this -> titulo . ".txt", 'wb');
-            fclose($arquivo);
+	function editar()
+	{
+	}
 
-            $instancia = new arquivo($this -> titulo);
-            $arquivos = $instancia -> listar();
-
-            $lista = json_encode($arquivos);
-
-            echo $lista;
-            return true;
-        }
-        
-        function pegarConteudo() {
-
-            $arquivo = '../documentos/' . $this -> titulo . '.txt';
-            echo file_get_contents($arquivo);
-            return true;
-        }
-        
-        function salvar($corpo) {
-
-            $arquivo = fopen('../documentos/' . $this -> titulo . '.txt', 'wb');
-
-            if (fwrite($arquivo, $corpo)):
-
-                fclose($arquivo);
-                echo true;
-                return true;
-            else:
-
-                fclose($arquivo);
-                echo false;
-                return false;
-            endif;
-        }
-        
-        function editar() {
-
-        }
-
-        function deletar() {
-
-        }
-    }
+	function deletar()
+	{
+	}
+}
