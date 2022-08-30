@@ -1,11 +1,13 @@
 # Hades
 
-Hades faz o intermédio entre documentos, criptografando e armazenando no Google Drive e lendo novamento com utilização das chaves.
+### Hades é um editor de arquivos de texto simples seguro.
 
-## Descrição do Código
+Ele faz o intermédio entre documentos, criptografando e armazenando no Google Drive pessoal do usuário e lendo novamento com utilização das chaves, sem armazenamento em servidor dos arquivos.
 
-> * Na **index.php**, há uma lista de arquivos da pasta **/documentos/**.
-> * No rodapé, há um campo para colocar o nome do arquivo e um botão para criar.
-> * É iniciada uma função no arquivo **documento.php** que manda uma solicitação para o arquivo **arquivo.php**.
-> * Uma função do PHP retorna uma lista JSON para o JavaScript, sem atualizar a página, em Ajax.
-> * O JavaScript atualiza a lista da **index** com a nova lista PHP
+![Hoje](https://github.com/Scemist/Hades/blob/desenvolvimento/storage/project/hades.png)
+
+## Descrição
+
+* Sistema Web e Acessível de Qualquer Lugar
+* Criptografado e Armazenado no Próprio Drive do Usuário
+* Autenticação pela API do Google Drive
