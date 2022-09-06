@@ -4,7 +4,7 @@
 
 Ele faz o intermédio entre documentos, criptografando e armazenando no Google Drive pessoal do usuário e lendo novamento com utilização das chaves, sem armazenamento em servidor dos arquivos.
 
-![Hoje](https://github.com/Scemist/Hades/blob/desenvolvimento/storage/project/hades.png)
+![Hoje](https://github.com/Scemist/Hades/blob/desenvolvimento/Src/Project/hades.png)
 
 ## Descrição
 
