@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.18
 
 COPY ./app /srv/app
 WORKDIR /srv
