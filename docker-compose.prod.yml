@@ -1,0 +1,21 @@
+name: serpens
+
+networks:
+  internal:
+
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Python.Prod.Dockerfile
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Nginx.Dockerfile
+    networks:
+      - internal
+    ports:
+      - 8006:8006
