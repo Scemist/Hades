@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template, url_for, request
 
 blueprint = Blueprint('app', __name__)
 
@@ -6,6 +6,6 @@ blueprint = Blueprint('app', __name__)
 def home():
 	return render_template('base.html', title='Hades - Landpage')
 
-@blueprint.route('/about')
+@blueprint.route('/new', methods=['POST'])
 def about():
-	return render_template('base.html')
+	return 'okay'

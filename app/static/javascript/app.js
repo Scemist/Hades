@@ -6,7 +6,6 @@ function iniciar() {
 	const inicio = window.document.querySelector('#inicio')
 
 	zaratustra.addEventListener('click', () => {
-
 		console.log('oi')
 		texto.classList.toggle('aparente');
 		inicio.classList.toggle('aparente')

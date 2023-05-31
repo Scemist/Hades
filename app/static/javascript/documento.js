@@ -5,16 +5,14 @@ abrirListener()
 salvarListener()
 
 function criarListener() { // Cria o listener que chama a função para criar um novo arquivo por Ajax
+	const criar = document.querySelector('#criar')
 
+	criar.onclick = () => {
+		const nome = document.querySelector('#nome').value
 
-	const criar = window.document.querySelector('#criar')
-	criar.addEventListener('click', () => {
-
-		var nome = window.document.querySelector('#nome').value
-
-		var doc = new documento(nome)
+		const doc = new documento(nome)
 		doc.criarArquivo()
-	})
+	}
 }
 
 function abrirListener() { // Cria o listener que chama a função para abrir o arquivo no editor
@@ -67,7 +65,6 @@ class documento {
 				var matriz = []
 
 				for (var i in lista) { // Adiciona o Objeto JSON à uma array
-
 					matriz.push(lista[i])
 				}
 
@@ -96,7 +93,7 @@ class documento {
 		const corpo = window.document.querySelector('#p-corpo').innerText
 		const xhr = new XMLHttpRequest()
 
-		xhr.open('POST', '../php/arquivo.php')
+		xhr.open('POST', '/new')
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 		xhr.send('titulo=' + arquivoAtual + '&tipo=salvar&corpo=' + corpo)
 		xhr.onreadystatechange = function () {

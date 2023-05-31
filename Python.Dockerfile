@@ -12,6 +12,7 @@ RUN pip3 install virtualenv && \
 
 RUN . /srv/.env/bin/activate && \
 	pip install gunicorn flask && \
+	pip install pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
 	deactivate
 
 WORKDIR /srv/app

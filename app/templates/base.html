@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-	<title>HADES</title>
+	<title>{{ title }}</title>
 </head>
 
 <body>
@@ -51,33 +51,10 @@
 
 					<div id="listaDocumentos">
 
-						<!-- <?php
-                            $instancia = new arquivo(null);
-                            $arquivos = $instancia -> listar();
+						<button class="lista">Aloha Moon</button>
+						<button class="lista">Hello World</button>
 
-                            if (!empty($arquivos)):
-                            
-                                foreach ($arquivos as $arquivo):
-                        ?> -->
-
-						<!-- <button class="lista">
-                            <?= $arquivo ?>
-                        </button> -->
-
-						<button class="lista">
-							Aloha Moon
-						</button>
-						<button class="lista">
-							Hello World
-						</button>
-
-						<!-- <?php 
-                                endforeach;
-                            else:
-                                echo '<p>Oras!! Não há arquivos por aqui ainda. Por que não tenta criar um?</p>';
-                            endif;
-                        ?> -->
-
+						<p>Oras!! Não há arquivos por aqui ainda. Por que não tenta criar um?</p>
 					</div>
 				</div>
 			</div>
@@ -104,8 +81,8 @@
 		</section>
 	</main>
 
-	<script src="{{ url_for('static', filename='javascript/documento.js') }}"></script>
-	<script src="{{ url_for('static', filename='javascript/app.js') }}"></script>
+	<script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+	<!-- <script src="{{ url_for('static', filename='javascript/app.js') }}"></script> -->
 </body>
 
 </html>
