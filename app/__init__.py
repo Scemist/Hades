@@ -1,8 +1,13 @@
-from flask import Flask
-from views import blueprint
+import os
+import flask
+from routes import blueprint
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
+app.secret_key = 'fh4t729eufh2948hsj29'
+
 app.register_blueprint(blueprint)
 
 if __name__ == '__main__':
-	app.run(debug=True, port=8006, host='0.0.0.0')
+  os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+  app.run('0.0.0.0', 8006, debug=True)
