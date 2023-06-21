@@ -34,6 +34,5 @@ def upload_basic():
 
     return file.get('id')
 
-
 if __name__ == '__main__':
     upload_basic()
