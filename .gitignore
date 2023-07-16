@@ -1,4 +1,6 @@
 .env/
+env.py
+app/drive-client-secret.json
 
 *.pyc
 __pycache__/
