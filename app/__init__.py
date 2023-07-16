@@ -1,13 +1,14 @@
 import os
 import flask
-from routes import blueprint
+import requests
 
 app = flask.Flask(__name__)
-app.secret_key = 'fh4t729eufh2948hsj29'
+app.secret_key = 'hf1389G*38g08FG782g1348'
 
+from routes import blueprint
 app.register_blueprint(blueprint)
 
 if __name__ == '__main__':
-  os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # Https Verification
+    app.run(debug=True, port=8006, host='0.0.0.0')
 
-  app.run('0.0.0.0', 8006, debug=True)
