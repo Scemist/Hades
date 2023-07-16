@@ -1,9 +1,9 @@
 from flask import Blueprint
 from controllers.IndexController import IndexController
-from controllers.AuthController import AuthController
+from controllers.DriveController import DriveController
 
 drive = Blueprint('drive', __name__)
 
 @drive.route('/files')
 def index():
-	return 'AHH'
+	return DriveController.get_files()

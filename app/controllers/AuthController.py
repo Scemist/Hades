@@ -13,6 +13,7 @@ from controllers.IndexController import IndexController
 
 class AuthController:
 	def test_api_request():
+		# return 'hi'
 		if 'credentials' not in flask.session:
 			return flask.redirect('authorize')
 
@@ -65,10 +66,10 @@ class AuthController:
 		flow.fetch_token(authorization_response=authorization_response)
 
 		credentials = flow.credentials
-		flask.session['credentials'] = AuthController.credentials_to_dict(
-			credentials)
+		flask.session['credentials'] = AuthController.credentials_to_dict(credentials)
 
-		return flask.redirect(flask.url_for('drive_auth.test_api_request'))
+		return ('Authorization Successfully' + IndexController.index())
+		# return flask.redirect(flask.url_for('drive_auth.test_api_request'))
 
 	def revoke():
 		if 'credentials' not in flask.session:
