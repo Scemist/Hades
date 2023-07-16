@@ -40,7 +40,7 @@ class AuthController:
 		flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 			CLIENT_SECRETS_FILE, scopes=SCOPES)
 
-		flow.redirect_uri = flask.url_for('app.oauth2callback', _external=True)
+		flow.redirect_uri = flask.url_for('drive_auth.oauth2callback', _external=True)
 
 		authorization_url, state = flow.authorization_url(
 			access_type='offline',
@@ -59,7 +59,7 @@ class AuthController:
 			state=state
 		)
 
-		flow.redirect_uri = flask.url_for('app.oauth2callback', _external=True)
+		flow.redirect_uri = flask.url_for('drive_auth.oauth2callback', _external=True)
 
 		authorization_response = flask.request.url
 		flow.fetch_token(authorization_response=authorization_response)
@@ -68,7 +68,7 @@ class AuthController:
 		flask.session['credentials'] = AuthController.credentials_to_dict(
 			credentials)
 
-		return flask.redirect(flask.url_for('app.test_api_request'))
+		return flask.redirect(flask.url_for('drive_auth.test_api_request'))
 
 	def revoke():
 		if 'credentials' not in flask.session:
