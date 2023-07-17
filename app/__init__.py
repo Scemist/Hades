@@ -1,3 +1,5 @@
+from routes.drive_auth import drive_auth
+from routes.drive import drive
 import os
 import flask
 import requests
@@ -5,8 +7,6 @@ import requests
 app = flask.Flask(__name__)
 app.secret_key = 'hf1389G*38g08FG782g1348'
 
-from routes.drive import drive
-from routes.drive_auth import drive_auth
 
 app.register_blueprint(drive)
 app.register_blueprint(drive_auth)
