@@ -7,3 +7,7 @@ drive = Blueprint('drive', __name__)
 @drive.route('/files')
 def index():
 	return DriveController.get_files()
+
+@drive.route('/store')
+def store():
+	return DriveController.store()

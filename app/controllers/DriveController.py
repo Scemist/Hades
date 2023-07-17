@@ -2,6 +2,7 @@ import flask
 import requests
 from flask import render_template
 from flask import Blueprint
+import http.client
 
 from env import *
 
@@ -14,30 +15,47 @@ from controllers.AuthController import AuthController\
 
 from pprint import pprint
 
+
 class DriveController:
-	def get_files():
-		files = DriveController.request_files()
-	
-		list = ''
+    def store():
+        if 'credentials' not in flask.session:
+            return ('You are not logged in Drive' + IndexController.index())
 
-		# for item in files['items']:
-		# 	list += (item['title'] + '<br>')
+        credentials = google.oauth2.credentials.Credentials(
+            **flask.session['credentials'])
 
-		# return list
-		return files
+        drive = googleapiclient.discovery.build(
+            API_SERVICE_NAME, API_VERSION, credentials=credentials)
 
-	def request_files():
-		if 'credentials' not in flask.session:
-			return ('You are not logged in Drive' + IndexController.index())
+        file_metadata = {
+            'name': 'Project plan',
+            'mimeType': 'application/vnd.google-apps.drive-sdk',
+            'parents': ['appDataFolder'],
+        }
 
-		credentials = google.oauth2.credentials.Credentials(**flask.session['credentials'])
+        file = drive.files().create(body=file_metadata,
+                                    fields='id').execute()
 
-		drive = googleapiclient.discovery.build(
-			API_SERVICE_NAME,
-			API_VERSION,
-			credentials=credentials)
+        return ('File created' + IndexController.index())
 
-		files = drive.files().list(q="parents in '16tICqPDb9cplW4nWg4ioCyuctkfmPhMH'").execute()
-		flask.session['credentials'] = AuthController.credentials_to_dict(credentials)
+    def get_files():
+        files = DriveController.request_files()
+        return files
 
-		return files
+    def request_files():
+        if 'credentials' not in flask.session:
+            return ('You are not logged in Drive' + IndexController.index())
+
+        credentials = google.oauth2.credentials.Credentials(
+            **flask.session['credentials'])
+
+        drive = googleapiclient.discovery.build(
+            API_SERVICE_NAME,
+            API_VERSION,
+            credentials=credentials)
+
+        files = drive.files().list(spaces="appDataFolder").execute()
+        flask.session['credentials'] = AuthController.credentials_to_dict(
+            credentials)
+
+        return files
