@@ -13,7 +13,9 @@
 
 A API do Google Drive é utilizada envolvendo os seguintes escopos;
 
-- https://www.googleapis.com/auth/drive.file
-- https://www.googleapis.com/auth/drive.resource
+- drive.file
+- drive.resource
 
 Estes escopos são recomendados e não-sensíveis, uma vez que o Hades pode acessar apenas arquivos de sua criação ou que foram explicitamente dado acesso.
+
+> [Google Drive Api Scopes](https://developers.google.com/drive/api/guides/api-specific-auth#scopes)
