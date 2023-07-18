@@ -19,108 +19,91 @@ from pprint import pprint
 
 
 class DriveController:
-    def store_file(file_name, content):
+    def store_file(file_name, content):  # Redirect Home
         AuthController.check()
         drive = AuthController.get_drive_service()
 
         file_metadata = {
-            'name': file_name,
-            'mimeType': content,
+            "name": file_name,
+            "mimeType": "text/plain",
         }
 
-        mimeType = 'text/plain'
-        text = 'so alguma coisinha aqui mua'
         media = MediaIoBaseUpload(
-            io.BytesIO(text.encode('utf-8')), mimetype=mimeType)
+            io.BytesIO(content.encode("utf-8")), mimetype=file_metadata.get("mimeType")
+        )
 
-        file = drive.files().create(body=file_metadata,
-                                    media_body=media,
-                                    fields='id').execute()
+        file = (
+            drive.files()
+            .create(body=file_metadata, media_body=media, fields="id")
+            .execute()
+        )
 
-        return ('File created' + IndexController.index())
+        return "File created" + IndexController.index()
 
-    def store_app_folder(): # Redirect Home
+    def store_app_folder():  # Redirect Home
         AuthController.check()
         drive = AuthController.get_drive_service()
 
         file_metadata = {
-            'name': 'Hades',
-            'mimeType': 'application/vnd.google-apps.folder'
+            "name": "Hades",
+            "mimeType": "application/vnd.google-apps.folder",
         }
 
-        file = drive.files().create(body=file_metadata, fields='id').execute()
+        file = drive.files().create(body=file_metadata, fields="id").execute()
 
-        return ('File created' + IndexController.index())
+        return "File created" + IndexController.index()
 
-    def get_app_folder(): # Id or False
+    def get_app_folder():  # Id or False
         AuthController.check()
         drive = AuthController.get_drive_service()
 
-        query = "'root' in parents" \
-            " and mimeType = 'application/vnd.google-apps.folder'" \
-            " and name = 'Hades'" \
+        query = (
+            "'root' in parents"
+            " and mimeType = 'application/vnd.google-apps.folder'"
+            " and name = 'Hades'"
             " and trashed = false"
+        )
 
         folders = drive.files().list(q=query).execute()
 
         try:
-            return folders['files'][0]['id']
+            return folders["files"][0]["id"]
         except (KeyError, IndexError):
             return False
 
-    def store_file_contents():
-        if 'credentials' not in flask.session:
-            return ('You are not logged in Drive' + IndexController.index())
+    # def store_file_contents():
+    #     AuthController.check()
+    #     drive = AuthController.get_drive_service()
 
-        credentials = google.oauth2.credentials.Credentials(
-            **flask.session['credentials'])
+    #     files = (
+    #         drive.files()
+    #         .get(fileId="1Y8B19QurZp4wgPUd6qjWPdAg4n3fMqFPyvss4FZP1LsYeDSbdAU")
+    #         .execute()
+    #     )
+    #     flask.session["credentials"] = AuthController.credentials_to_dict(credentials)
 
-        drive = googleapiclient.discovery.build(
-            API_SERVICE_NAME,
-            API_VERSION,
-            credentials=credentials)
+    #     return files
 
-        files = drive.files().get(
-            fileId="1Y8B19QurZp4wgPUd6qjWPdAg4n3fMqFPyvss4FZP1LsYeDSbdAU").execute()
-        flask.session['credentials'] = AuthController.credentials_to_dict(
-            credentials)
+    # def get_file_content():
+    #     AuthController.check()
+    #     drive = AuthController.get_drive_service()
 
-        return files
+    #     files = (
+    #         drive.files()
+    #         .get(
+    #             alt="media",
+    #             fileId="1Z2knnze5UHVGHejm6NbkKRUrghZf2b3np8XhJ2tBVj3Dx8ntAsU",
+    #         )
+    #         .execute()
+    #     )
 
-    def get_file_content():
-        if 'credentials' not in flask.session:
-            return ('You are not logged in Drive' + IndexController.index())
+    #     flask.session["credentials"] = AuthController.credentials_to_dict(credentials)
 
-        credentials = google.oauth2.credentials.Credentials(
-            **flask.session['credentials'])
-
-        drive = googleapiclient.discovery.build(
-            API_SERVICE_NAME,
-            API_VERSION,
-            credentials=credentials)
-
-        files = drive.files().get(alt="media",
-                                  fileId="1Z2knnze5UHVGHejm6NbkKRUrghZf2b3np8XhJ2tBVj3Dx8ntAsU").execute()
-
-        flask.session['credentials'] = AuthController.credentials_to_dict(
-            credentials)
-
-        return files
+    #     return files
 
     def get_files():
-        if 'credentials' not in flask.session:
-            return ('You are not logged in Drive' + IndexController.index())
+        AuthController.check()
+        drive = AuthController.get_drive_service()
+        files = drive.files().list(q="trashed = false").execute()
 
-        credentials = google.oauth2.credentials.Credentials(
-            **flask.session['credentials'])
-
-        drive = googleapiclient.discovery.build(
-            API_SERVICE_NAME,
-            API_VERSION,
-            credentials=credentials)
-
-        files = drive.files().list().execute()
-        flask.session['credentials'] = AuthController.credentials_to_dict(
-            credentials)
-
-        return files
+        return render_template("files.html", files=files["files"])
