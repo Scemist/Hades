@@ -6,22 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='build/tailwind.css') }}">
 
 	<title>Create New File</title>
 </head>
 
-<body class="bg-slate-100">
-	<main>
-		<form action="">
-			<fieldset>
-				<label>FileName</label>
-				<input type="text">
+<body class="bg-zinc-900 text-zinc-200 flex flex-nowrap justify-center">
+	<main style="max-width: 1200px" class="flex-1 p-3">
+		<h1 class="text-5xl mb-3">Hades_</h1>
+
+		<form action="" class="bg-gray-800 rounded text-zinc-200 shadow-lg p-6 m-6 w-8/12 mx-auto">
+			<fieldset class="mb-6 flex flex-col">
+				<label class="mb-1 text-sm text-gray-400">File Name</label>
+				<input type="text" class="py-1 px-3 shadow border border-gray-900 rounded bg-gray-900 font-bold">
 			</fieldset>
-			
+
+			<fieldset class="mb-6 flex flex-col">
+				<textarea name="" class="py-3 px-3 shadow border border-gray-900 rounded bg-gray-900" id="" cols="30" rows="10"></textarea>
+			</fieldset>
+
 			<fieldset>
-				<label>File</label>
-				<textarea name="" id="" cols="30" rows="10"></textarea>
+				<button type="submit" class="border shadow rounded border-blue-950 bg-blue-900 px-4 py-1 ml-auto block">Atualizar</button>
 			</fieldset>
 		</form>
 	</main>
