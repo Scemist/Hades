@@ -7,6 +7,6 @@ services:
       dockerfile: Python.Dockerfile
     restart: unless-stopped
     ports:
-      - 8006:8006
+      - 8007:8006
     volumes:
       - ./app:/srv/app

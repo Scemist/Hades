@@ -5,10 +5,14 @@ WORKDIR /srv
 
 RUN apk add \
 	python3 \
-	py3-pip
+	py3-pip \
+	npm
 
 RUN pip3 install virtualenv && \
 	virtualenv .env
+
+RUN npm install && \
+	npm run build
 
 RUN . /srv/.env/bin/activate && \
 	pip install gunicorn flask && \
@@ -16,6 +20,7 @@ RUN . /srv/.env/bin/activate && \
 	deactivate
 
 RUN export NODE_ENV=development
+RUN export AUTHLIB_RELAX_TOKEN_SCOPE=1
 
 WORKDIR /srv/app
 

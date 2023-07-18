@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='build/tailwind.css') }}">
+
 	<title>Hades</title>
 </head>
-<body>
-	<table>
-		<tr>
-			<td><a href="/test">Test an API request</a></td>
-			<td>Submit an API request and see a formatted JSON response.
-				Go through the authorization flow if there are no stored
-				credentials for the user.</td>
-		</tr>
-		<tr>
-			<td><a href="/authorize">Test the auth flow directly</a></td>
-			<td>Go directly to the authorization flow. If there are stored
-				credentials, you still might not be prompted to reauthorize
-				the application.</td>
-		</tr>
-		<tr>
-			<td><a href="/revoke">Revoke current credentials</a></td>
-			<td>Revoke the access token associated with the current user
-				session. After revoking credentials, if you go to the test
-				page, you should see an <code>invalid_grant</code> error.
-			</td>
-		</tr>
-		<tr>
-			<td><a href="/clear">Clear Flask session credentials</a></td>
-			<td>Clear the access token currently stored in the user session.
-				After clearing the token, if you <a href="/test">test the
-					API request</a> again, you should go back to the auth flow.
-			</td>
-		</tr>
-	</table>
-</body>
-</html>
 
+<body class="bg-zinc-900 text-zinc-200 flex flex-nowrap justify-center">
+	<main style="max-width: 1200px" class="flex-1 p-3">
+		<nav class="flex justify-between">
+			<h1 class="text-5xl mb-3">Hades_</h1>
+				
+			<ul class="flex">
+				<li class="mx-3 my-4">
+					<a class="border rounded bg-blue-800 border-gray-900 py-1 px-4" href="/files">List Files</a></td>
+					<!-- <p class="text-sm text-gray-500">
+						Submit an API request and see a formatted JSON response.Go through the authorization flow if there are no storedcredentials for the user.
+					</p> -->
+				</li>
+
+				<li class="mx-3 my-4">
+					<a class="border rounded bg-blue-800 border-gray-900 py-1 px-4" href="/authorize">Google Drive Login</a>
+					<!-- <p class="text-sm text-gray-500">
+						Go directly to the authorization flow. If there are storedcredentials, you still might not be prompted to reauthorizethe application.
+					</p> -->
+				</li>
+
+				<li class="mx-3 my-4">
+					<a class="border rounded bg-blue-800 border-gray-900 py-1 px-4" href="/revoke">Revoke Credentials</a>
+					<!-- <p class="text-sm text-gray-500">
+						Revoke the access token associated with the current user session. After revoking credentials, if you go to the test page, you should see an <code>invalid_grant</code> error.
+					</p> -->
+				</li>
+
+				<li class="mx-3 my-4">
+					<a class="border rounded bg-blue-800 border-gray-900 py-1 px-4" href="/clear">Clear Flask Session</a>
+					<!-- <p class="text-sm text-gray-500">
+						lear the access token currently stored in the user session. After clearing the token, if you <a href="/test">test the API request</a> again, you should go back to the auth flow.
+					</p> -->
+				</li>
+			</ul>
+		</nav>
+
+		<hr class="bg-none border-t-2 border-zinc-700">
+</body>
+
+</html>
