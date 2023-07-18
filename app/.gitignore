@@ -1,9 +1,8 @@
 .env/
-env.py
-app/drive-client-secret.json
-app/node_modules
-app/package-lock.json
-app/static/build/
+drive-client-secret.json
+node_modules
+package-lock.json
+static/build/
 
 *.pyc
 __pycache__/
