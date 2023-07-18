@@ -1,0 +1,11 @@
+{% extends 'template.jinja' %}
+
+{% block content %}
+<section action="/files/create" method="POST" class="bg-gray-800 rounded text-zinc-200 shadow-lg p-6 m-6 w-8/12 mx-auto">
+	<ul>
+		{% for file in files %}
+		<li class="border border-gray-600 font-bold bg-zinc-900 py-1 px-4 rounded m-3">{{ file['name'] }}</li>
+		{% endfor %}
+	</ul>
+</section>
+{% endblock %}

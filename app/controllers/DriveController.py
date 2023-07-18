@@ -106,4 +106,4 @@ class DriveController:
         drive = AuthController.get_drive_service()
         files = drive.files().list(q="trashed = false").execute()
 
-        return render_template("files.html", files=files["files"])
+        return render_template("files.jinja", files=files["files"])

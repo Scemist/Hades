@@ -19,7 +19,7 @@ def create_file():
             request.values["title"], request.values["text_file"]
         )
     else:
-        return render_template("create-file.html")
+        return render_template("create-file.jinja")
 
 
 @drive.route("/store_file")
