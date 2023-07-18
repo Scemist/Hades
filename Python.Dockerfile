@@ -15,6 +15,8 @@ RUN . /srv/.env/bin/activate && \
 	pip install pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
 	deactivate
 
+RUN export NODE_ENV=development
+
 WORKDIR /srv/app
 
 ENTRYPOINT . /srv/.env/bin/activate && python __init__.py
