@@ -1,6 +1,6 @@
 FROM alpine:3.18
 
-COPY ./app /srv/app
+COPY . /srv/app
 WORKDIR /srv
 
 RUN apk add \

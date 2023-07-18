@@ -1,6 +1,6 @@
 FROM ubuntu
 
-COPY ./app /srv/app
+COPY . /srv/app
 WORKDIR /srv
 
 RUN apt update
