@@ -4,10 +4,12 @@
 ## Tecnologias
 
 - **Python** - as Base Language
-- **Flask** - as Back-end Framework
-- **WSGI** - as WebServer
+- **Flask** - as Back-end Framework 
+- **NGINX** - as WebServer
+- **Gunicorn** - as WSGI
 - **Google Drive Api** - as Storage
 - **GPG AES256** - as Encryption Tool and Algorithm
+- **TailwindCSS** - as Front-end Framework
 
 ## Privacidade
 
