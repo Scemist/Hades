@@ -3,7 +3,7 @@ import requests
 from flask import render_template
 from flask import Blueprint
 
-from env import *
+from drive_config import *
 
 import google.oauth2.credentials
 import google_auth_oauthlib.flow

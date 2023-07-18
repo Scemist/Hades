@@ -5,7 +5,7 @@ from flask import Blueprint
 import http.client
 import io
 
-from env import *
+from drive_config import *
 
 import google.oauth2.credentials
 import google_auth_oauthlib.flow

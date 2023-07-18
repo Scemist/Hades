@@ -4,8 +4,8 @@
   "description": "",
   "main": "__init__.py",
   "scripts": {
-	"build": "npx tailwindcss -i static/css/tailwind.css -o static/build/tailwind.css --minify",
-	"dev": "npx tailwindcss -i static/css/tailwind.css -o static/build/tailwind.css --watch"
+	"build": "npx tailwindcss -i /srv/app/static/css/tailwind.css -o /srv/app/static/build/tailwind.css --minify",
+	"dev": "npx tailwindcss -i /srv/app/static/css/tailwind.css -o /srv/app/static/build/tailwind.css --watch"
   },
   "author": "",
   "license": "ISC",

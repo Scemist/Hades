@@ -11,12 +11,9 @@ RUN apk add \
 RUN pip3 install virtualenv && \
 	virtualenv .env
 
-RUN npm install && \
-	npm run build
-
 RUN . /srv/.env/bin/activate && \
 	pip install gunicorn flask && \
-	pip install pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
+	pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
 	deactivate
 
 RUN export NODE_ENV=development
@@ -24,4 +21,7 @@ RUN export AUTHLIB_RELAX_TOKEN_SCOPE=1
 
 WORKDIR /srv/app
 
-ENTRYPOINT . /srv/.env/bin/activate && python __init__.py
+ENTRYPOINT npm install && \
+	npm run build && \
+	. /srv/.env/bin/activate && \
+	python __init__.py
