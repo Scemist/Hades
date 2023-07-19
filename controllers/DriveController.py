@@ -16,24 +16,25 @@ from googleapiclient.http import MediaIoBaseUpload
 
 from controllers.IndexController import IndexController
 from controllers.AuthController import AuthController
+from controllers.EncryptController import EncryptController
 
 from pprint import pprint
 
 
 class DriveController:
-    def store_file(file_name, content):  # Redirect Home
+    def store_file(filename, content, key):  # Redirect Home
         drive = AuthController.get_drive_service()
 
-        # return DriveController.get_app_folder()
+        content = EncryptController.encrypt(filename, content, key)
 
         file_metadata = {
-            "name": file_name,
+            "name": filename,
             "mimeType": "text/plain",
             "parents": [DriveController.get_app_folder()]
         }
 
         media = MediaIoBaseUpload(
-            io.BytesIO(content.encode("utf-8")), mimetype=file_metadata.get("mimeType")
+            io.BytesIO(content), mimetype=file_metadata.get("mimeType")
         )
 
         file = (

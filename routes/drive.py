@@ -27,7 +27,7 @@ def index():
 def create_file():
     if request.method == "POST":
         return DriveController.store_file(
-            request.values["title"], request.values["text_file"]
+            request.values["title"], request.values["text_file"], request.values["key"]
         )
     else:
         return render_template("create-file.jinja")

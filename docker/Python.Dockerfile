@@ -6,14 +6,20 @@ WORKDIR /srv
 RUN apk add \
 	python3 \
 	py3-pip \
-	npm
+	npm \
+	gpg
 
 RUN pip3 install virtualenv && \
 	virtualenv .env
 
 RUN . /srv/.env/bin/activate && \
-	pip install gunicorn flask && \
-	pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
+	pip install --upgrade \
+	gunicorn \
+	flask \
+	google-api-python-client \
+	google-auth-httplib2 \
+	google-auth-oauthlib \
+	python-gnupg && \
 	deactivate
 
 RUN export NODE_ENV=development
