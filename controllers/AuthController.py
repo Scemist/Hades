@@ -13,22 +13,6 @@ from controllers.IndexController import IndexController
 
 
 class AuthController:
-    def test_api_request():
-        if 'credentials' not in flask.session:
-            return flask.redirect('authorize')
-
-        credentials = google.oauth2.credentials.Credentials(
-            **flask.session['credentials'])
-
-        drive = googleapiclient.discovery.build(
-            API_SERVICE_NAME, API_VERSION, credentials=credentials)
-
-        files = drive.files().list().execute()
-        flask.session['credentials'] = AuthController.credentials_to_dict(
-            credentials)
-
-        return flask.jsonify(**files)
-
     def credentials_to_dict(credentials):
         return {'token': credentials.token,
                 'refresh_token': credentials.refresh_token,
@@ -74,10 +58,12 @@ class AuthController:
         return ('Authorization Successfully' + IndexController.index())
 
     def revoke():
-        AuthController.check()
+        if not AuthController.check():
+            flask.flash('Already revoked.')
 
-        credentials = google.oauth2.credentials.Credentials(
-            **flask.session['credentials'])
+            return flask.redirect('/')
+
+        credentials = AuthController.get_credentials()
 
         revoke = requests.post('https://oauth2.googleapis.com/revoke',
                                params={'token': credentials.token},
@@ -94,12 +80,21 @@ class AuthController:
         if 'credentials' in flask.session:
             del flask.session['credentials']
 
-        return ('Credentials have been cleared.' + IndexController.index())
+        flask.flash('Credentials have been cleared.')
+
+        return IndexController.index()
 
     def check():
-        if 'credentials' not in flask.session:
-            return ('You need to <a href="/authorize">authorize</a> before ' +
-                    'testing the code to revoke credentials.')
+        try:
+            if 'credentials' not in flask.session:
+                return False
+
+            credentials = google.oauth2.credentials.Credentials(
+                **flask.session['credentials'])
+
+            return True
+        except (KeyError, IndexError):
+            return False
 
     def get_credentials():
         return google.oauth2.credentials.Credentials(

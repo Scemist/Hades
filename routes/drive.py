@@ -1,10 +1,21 @@
 from flask import Blueprint
 from flask import render_template
 from flask import request
+import flask
 from controllers.IndexController import IndexController
 from controllers.DriveController import DriveController
+from controllers.AuthController import AuthController
+from flask import flash
+from flask import redirect
 
 drive = Blueprint("drive", __name__)
+
+
+@drive.before_request
+def verify_auth():
+    if not AuthController.check():
+        flash('User not authenticated.')
+        return redirect('/')
 
 
 @drive.route("/files")

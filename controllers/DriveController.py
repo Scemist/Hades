@@ -2,6 +2,8 @@ import flask
 import requests
 from flask import render_template
 from flask import Blueprint
+from flask import flash
+from flask import redirect
 import http.client
 import io
 
@@ -20,12 +22,14 @@ from pprint import pprint
 
 class DriveController:
     def store_file(file_name, content):  # Redirect Home
-        AuthController.check()
         drive = AuthController.get_drive_service()
+
+        # return DriveController.get_app_folder()
 
         file_metadata = {
             "name": file_name,
             "mimeType": "text/plain",
+            "parents": [DriveController.get_app_folder()]
         }
 
         media = MediaIoBaseUpload(
@@ -41,7 +45,6 @@ class DriveController:
         return "File created" + IndexController.index()
 
     def store_app_folder():  # Redirect Home
-        AuthController.check()
         drive = AuthController.get_drive_service()
 
         file_metadata = {
@@ -51,10 +54,9 @@ class DriveController:
 
         file = drive.files().create(body=file_metadata, fields="id").execute()
 
-        return "File created" + IndexController.index()
+        return file.get('id')
 
-    def get_app_folder():  # Id or False
-        AuthController.check()
+    def get_app_folder():  # Id
         drive = AuthController.get_drive_service()
 
         query = (
@@ -69,7 +71,7 @@ class DriveController:
         try:
             return folders["files"][0]["id"]
         except (KeyError, IndexError):
-            return False
+            return DriveController.store_app_folder()
 
     # def store_file_contents():
     #     AuthController.check()
@@ -102,8 +104,10 @@ class DriveController:
     #     return files
 
     def get_files():
-        AuthController.check()
+        DriveController.get_app_folder()
+
         drive = AuthController.get_drive_service()
-        files = drive.files().list(q="trashed = false").execute()
+        files = drive.files().list(
+            q="trashed = false and mimeType != 'application/vnd.google-apps.folder'").execute()
 
         return render_template("files.jinja", files=files["files"])

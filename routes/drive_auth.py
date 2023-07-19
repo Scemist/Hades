@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, redirect
 from controllers.IndexController import IndexController
 from controllers.AuthController import AuthController
 
@@ -27,6 +27,9 @@ def oauth2callback():
 
 @drive_auth.route('/revoke')
 def revoke():
+    # if AuthController.check():
+    #     return AuthController.check()
+    # else:
     return AuthController.revoke()
 
 
