@@ -6,6 +6,7 @@ from flask import flash
 from flask import redirect
 import http.client
 import io
+from datetime import datetime
 
 from drive_config import *
 
@@ -101,6 +102,19 @@ class DriveController:
 
         drive = AuthController.get_drive_service()
         files = drive.files().list(
-            q="trashed = false and mimeType != 'application/vnd.google-apps.folder'").execute()
+            q="trashed = false and mimeType != 'application/vnd.google-apps.folder'",
+            fields='files(id, modifiedTime, createdTime, name, starred)').execute()
+        # fields='*').execute()
+
+        def get_file_with_datetime(file):
+
+            createdTime = datetime.strptime(
+                file['createdTime'], "%Y-%m-%dT%H:%M:%S.%fZ")
+            file['createdTime'] = createdTime.strftime('%d/%m/%Y')
+
+            return file
+
+        files['files'] = list(map(get_file_with_datetime, files['files']))
+        return files
 
         return render_template("files.jinja", files=files["files"])

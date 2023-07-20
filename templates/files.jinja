@@ -11,8 +11,11 @@
 		<li class="my-4">
 			<form action="/files/{{ file['id'] }}" class="flex border border-gray-900 p-0 font-semibold bg-gray-900 rounded cursor-pointer hover:bg-gray-950" method="POST">
 				{# <input type="hidden" name="key"> #}
-				<button type="submit" class="py-1 px-4 flex-1">
+				<button type="submit" class="py-1 px-4 flex-1 flex justify-between items-center align-middle content-center">
 					{{ file['name'] }}
+					<span class="text-sm text-gray-600">{{ file['createdTime'] }}</span>
+					
+
 				</button>
 			</form>
 		</li>

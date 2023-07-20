@@ -33,7 +33,6 @@ class AuthController:
             include_granted_scopes='true')
 
         flask.session['state'] = state
-
         return flask.redirect(authorization_url)
 
     def oauth2callback():
@@ -55,7 +54,8 @@ class AuthController:
         flask.session['credentials'] = AuthController.credentials_to_dict(
             credentials)
 
-        return ('Authorization Successfully' + IndexController.index())
+        flask.flash('Authorization Successfully.')
+        return flask.redirect('/')
 
     def revoke():
         if not AuthController.check():
@@ -72,9 +72,11 @@ class AuthController:
         status_code = getattr(revoke, 'status_code')
 
         if status_code == 200:
-            return ('Credentials successfully revoked.' + IndexController.index())
+            flask.flash('Credentials successfully revoked.')
+            return IndexController.index()
         else:
-            return ('An error occurred.' + IndexController.index())
+            flask.flash('An error occurred.')
+            return IndexController.index()
 
     def clear_credentials():
         if 'credentials' in flask.session:
