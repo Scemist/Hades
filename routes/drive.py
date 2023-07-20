@@ -23,6 +23,11 @@ def index():
     return DriveController.get_files()
 
 
+@drive.route("/files/<id>", methods=["POST"])
+def get_file(id):
+    return DriveController.get_file(id)
+
+
 @drive.route("/files/create", methods=["GET", "POST"])
 def create_file():
     if request.method == "POST":

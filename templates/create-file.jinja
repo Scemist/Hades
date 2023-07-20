@@ -4,11 +4,11 @@
 <form action="/files/create" method="POST" class="bg-gray-800 rounded text-zinc-200 shadow-lg p-6 m-6 w-8/12 mx-auto">
 	<fieldset class="mb-6 flex flex-col">
 		<label class="mb-1 text-sm text-gray-400">File Name</label>
-		<input type="text" class="py-1 px-3 shadow border border-gray-900 rounded bg-gray-900 font-bold" name="title">
+		<input type="text" class="py-1 px-3 shadow border border-gray-900 rounded bg-gray-900 font-bold" name="title" value="{{ filename or '' }}">
 	</fieldset>
 
 	<fieldset class="mb-6 flex flex-col">
-		<textarea class="py-3 px-3 shadow border border-gray-900 rounded bg-gray-900" name="text_file" rows="10"></textarea>
+		<textarea class="py-3 px-3 shadow border border-gray-900 rounded bg-gray-900" name="text_file" rows="10">{{ file or '' }}</textarea>
 	</fieldset>
 
 	<fieldset class="flex justify-end gap-4">

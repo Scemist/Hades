@@ -87,22 +87,14 @@ class DriveController:
 
     #     return files
 
-    # def get_file_content():
-    #     AuthController.check()
-    #     drive = AuthController.get_drive_service()
+    def get_file(id):
+        drive = AuthController.get_drive_service()
 
-    #     files = (
-    #         drive.files()
-    #         .get(
-    #             alt="media",
-    #             fileId="1Z2knnze5UHVGHejm6NbkKRUrghZf2b3np8XhJ2tBVj3Dx8ntAsU",
-    #         )
-    #         .execute()
-    #     )
+        file_metadata = drive.files().get(fileId=id).execute()
+        file = drive.files().get_media(fileId=id).execute()
+        file = EncryptController.decrypt(file, 'umasenha')
 
-    #     flask.session["credentials"] = AuthController.credentials_to_dict(credentials)
-
-    #     return files
+        return render_template("create-file.jinja", file=file, filename=file_metadata['name'])
 
     def get_files():
         DriveController.get_app_folder()

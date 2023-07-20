@@ -9,9 +9,12 @@
 	<ul>
 		{% for file in files %}
 		<li class="my-4">
-			<a href="/files/{{ file['id'] }}" class="border border-gray-900 block font-semibold bg-gray-900 py-1 px-4 rounded m-3 cursor-pointer hover:bg-gray-950">
-				{{ file['name'] }}
-			</a>
+			<form action="/files/{{ file['id'] }}" class="flex border border-gray-900 p-0 font-semibold bg-gray-900 rounded cursor-pointer hover:bg-gray-950" method="POST">
+				{# <input type="hidden" name="key"> #}
+				<button type="submit" class="py-1 px-4 flex-1">
+					{{ file['name'] }}
+				</button>
+			</form>
 		</li>
 		{% endfor %}
 	</ul>
