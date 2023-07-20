@@ -95,7 +95,7 @@ class DriveController:
         file = drive.files().get_media(fileId=id).execute()
         file = EncryptController.decrypt(file, 'umasenha')
 
-        return render_template("create-file.jinja", file=file, filename=file_metadata['name'])
+        return render_template("files-create.jinja", file=file, filename=file_metadata['name'])
 
     def get_files():
         DriveController.get_app_folder()
@@ -104,7 +104,6 @@ class DriveController:
         files = drive.files().list(
             q="trashed = false and mimeType != 'application/vnd.google-apps.folder'",
             fields='files(id, modifiedTime, createdTime, name, starred)').execute()
-        # fields='*').execute()
 
         def get_file_with_datetime(file):
 
@@ -115,6 +114,5 @@ class DriveController:
             return file
 
         files['files'] = list(map(get_file_with_datetime, files['files']))
-        # return files
 
         return render_template("files.jinja", files=files["files"])

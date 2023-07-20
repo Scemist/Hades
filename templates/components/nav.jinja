@@ -1,0 +1,7 @@
+{% macro button(name, icon) -%}
+<li class="mx-3 my-4">
+	<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="/files">
+		<i data-lucide="{{ icon }}" class="h-4"></i> {{ name }}
+	</a>
+</li>
+{%- endmacro %}

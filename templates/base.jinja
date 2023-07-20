@@ -1,88 +1,48 @@
-<!DOCTYPE html>
+{% import 'components/nav.jinja' as Nav %}
 
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='build/tailwind/tailwind.css') }}">
 
-	<title>{{ title }}</title>
+	<title>Hades</title>
 </head>
 
-<body>
-	<nav>
-		<h1 id="hades">Hades_</h1>
+<body class="bg-zinc-900 text-zinc-300 flex flex-nowrap justify-center">
+	<main style="max-width: 1200px" class="flex-1 p-3 relative h-screen">
+		<nav class="flex justify-between">
+			<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
 
-		<div class="menu">
-			<div class="barra"></div>
-			<div class="barra"></div>
-			<div class="barra"></div>
+			<ul class="flex">
+				{{ Nav.button('Files', 'file-stack') }}
+				{{ Nav.button('Connect to Drive', 'plug') }}
+				{{ Nav.button('Disconnect', 'unplug') }}
+				{{ Nav.button('Logout', 'door-open') }}
+			</ul>
+		</nav>
+
+		<hr class="bg-none border-t-2 border-gray-700">
+
+		<div>
+			{% block content %}
+			{% endblock %}
 		</div>
 
-		<div id="pass">
-			<div class="input-grupo">
-				<label>Passphrase 1</label>
-				<input class="caixa" type="password">
-			</div>
-
-			<div class="input-grupo">
-				<label>Passphrase 2</label>
-				<input class="caixa" type="password" name="passphrase2">
-			</div>
-
-			<input id="requisicao" type="submit" value="ATUALIZAR">
+		{% if get_flashed_messages() %}
+		<div class="absolute bottom-12 right-8 py-4 px-8 shadow bg-blue-800 rounded">
+			{% for message in get_flashed_messages() %}
+			{{ message }}
+			{% endfor %}
 		</div>
-	</nav>
-
-	<main>
-		<header class="card card-head">
-			<h3 id="dark">Assim falou Zaratustra</h3>
-		</header>
-
-		<section id="inicio">
-			<div class="card">
-				<div>
-					<h3 class="cabecalho">Documentos_</h3>
-
-					<div id="listaDocumentos">
-
-						<button class="lista">Aloha Moon</button>
-						<button class="lista">Hello World</button>
-
-						<p>Oras!! Não há arquivos por aqui ainda. Por que não tenta criar um?</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="card card-foot">
-				<input type="hidden" name="tipo" value="criar">
-				<input type="text" id="nome" class="botao" name="nome" placeholder="Nome do Arquivo...">
-				<input id="criar" class="botao" type="submit" value="NOVO ARQUIVO">
-			</div>
-		</section>
-
-		<section id="texto" class="aparente">
-			<div class="card">
-				<p contenteditable="true" id="p-corpo">
-					Aquele que tem um porquê para viver pode suportar quase qualquer como.
-				</p>
-			</div>
-
-			<div class="card card-foot">
-				<input type="hidden" name="tipo" value="salvar">
-				<input type="text" id="novonome" class="botao" name="nome" placeholder="Nome do Arquivo...">
-				<input id="salvar" class="botao" type="submit" value="SALVAR">
-			</div>
-		</section>
+		{% endif %}
 	</main>
 
-	<script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
-	<!-- <script src="{{ url_for('static', filename='javascript/app.js') }}"></script> -->
+	<script src="{{ url_for('static', filename='build/assets/app.js') }}"></script>
 </body>
 
 </html>
