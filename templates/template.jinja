@@ -14,11 +14,11 @@
 <body class="bg-zinc-900 text-zinc-300 flex flex-nowrap justify-center">
 	<main style="max-width: 1200px" class="flex-1 p-3 relative h-screen">
 		<nav class="flex justify-between">
-			<h1 class="text-5xl font-semibold mb-3">Hades_</h1>
+			<h1 class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</h1>
 
 			<ul class="flex">
 				<li class="mx-3 my-4">
-					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex" href="/files">
+					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="/files">
 						<i data-lucide="file-stack" class="h-4"></i> Files
 					</a>
 					<!-- Submit an API request and see a formatted JSON response.Go through the authorization flow if there are no storedcredentials for the user. -->
@@ -26,18 +26,24 @@
 
 				{# {% if not is_logged %} #}
 				<li class="mx-3 my-4">
-					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4" href="/authorize">Connect to Drive</a>
+					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="/authorize">
+						<i data-lucide="plug" class="h-4"></i> Connect to Drive
+					</a>
 					<!-- Go directly to the authorization flow. If there are storedcredentials, you still might not be prompted to reauthorizethe application. -->
 				</li>
 				{# {% endif %} #}
 
 				<li class="mx-3 my-4">
-					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4" href="/revoke">Disconnect</a>
+					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="/revoke">
+						<i data-lucide="unplug" class="h-4"></i> Disconnect
+					</a>
 					<!-- Revoke the access token associated with the current user session. After revoking credentials, if you go to the test page, you should see an <code>invalid_grant</code> error. -->
 				</li>
 
 				<li class="mx-3 my-4">
-					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4" href="/clear">Clear Session</a>
+					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="/clear">
+						<i data-lucide="door-open" class="h-4"></i> Logout
+					</a>
 					<!-- lear the access token currently stored in the user session. After clearing the token, if you <a href="/test">test the API request</a> again, you should go back to the auth flow. -->
 				</li>
 
