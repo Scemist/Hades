@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='build/tailwind.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='build/tailwind/tailwind.css') }}">
 
 	<title>Hades</title>
 </head>
@@ -18,7 +18,9 @@
 
 			<ul class="flex">
 				<li class="mx-3 my-4">
-					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4" href="/files">Files</a></td>
+					<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex" href="/files">
+						<i data-lucide="file-stack" class="h-4"></i> Files
+					</a>
 					<!-- Submit an API request and see a formatted JSON response.Go through the authorization flow if there are no storedcredentials for the user. -->
 				</li>
 
@@ -62,6 +64,7 @@
 		{% endif %}
 	</main>
 
+	<script src="{{ url_for('static', filename='build/assets/app.js') }}"></script>
 </body>
 
 </html>

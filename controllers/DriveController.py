@@ -115,6 +115,6 @@ class DriveController:
             return file
 
         files['files'] = list(map(get_file_with_datetime, files['files']))
-        return files
+        # return files
 
         return render_template("files.jinja", files=files["files"])
