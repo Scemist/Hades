@@ -10,3 +10,12 @@ services:
       - 8006:8006
     volumes:
       - ..:/srv/app
+      - /srv/app
+
+  dependences:
+    build:
+      context: ..
+      dockerfile: docker/Dependences.Dockerfile
+    restart: unless-stopped
+    volumes_from:
+      - python

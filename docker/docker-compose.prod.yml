@@ -7,15 +7,15 @@ services:
   python:
     build:
       context: ..
-      dockerfile: Python.Prod.Dockerfile
+      dockerfile: docker/Python.Prod.Dockerfile
     networks:
       - internal
 
   nginx:
     build:
       context: ..
-      dockerfile: Nginx.Dockerfile
+      dockerfile: docker/Nginx.Dockerfile
     networks:
       - internal
     ports:
-      - 8006:8006
+      - 8015:8015
