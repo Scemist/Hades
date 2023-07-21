@@ -82,6 +82,12 @@ class AuthController:
         if 'credentials' in flask.session:
             del flask.session['credentials']
 
+        AuthController.revoke()
+        if 'credentials' in flask.session:
+            del flask.session['key']
+
+        flask.session.clear()
+
         flask.flash('Credentials have been cleared.')
 
         return IndexController.index()
@@ -107,3 +113,15 @@ class AuthController:
 
         return googleapiclient.discovery.build(
             API_SERVICE_NAME, API_VERSION, credentials=credentials)
+
+    def set_key(key):
+        flask.session['key'] = key
+
+        flask.flash('Key setted successfully.')
+        return flask.redirect('/files')
+
+    def destroy_key():
+        del flask.session['key']
+
+        flask.flash('Key deleted successfully.')
+        return flask.redirect('/')

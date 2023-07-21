@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect
+from flask import Blueprint, redirect, request
 from controllers.IndexController import IndexController
 from controllers.AuthController import AuthController
 
@@ -8,6 +8,14 @@ drive_auth = Blueprint('drive_auth', __name__)
 @drive_auth.route('/')
 def index():
     return IndexController.index()
+
+@drive_auth.route('/key', methods=['POST'])
+def set_key():
+    return AuthController.set_key(request.values['key'])
+
+@drive_auth.route('/key/clear')
+def destroy_key():
+    return AuthController.destroy_key()
 
 
 @drive_auth.route('/test')
@@ -27,9 +35,6 @@ def oauth2callback():
 
 @drive_auth.route('/revoke')
 def revoke():
-    # if AuthController.check():
-    #     return AuthController.check()
-    # else:
     return AuthController.revoke()
 
 

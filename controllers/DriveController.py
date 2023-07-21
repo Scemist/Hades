@@ -89,11 +89,15 @@ class DriveController:
     #     return files
 
     def get_file(id):
+        if not 'key' in flask.session:
+            flash('You need to set and Encrypt Key First.')
+            return redirect('/')
+
         drive = AuthController.get_drive_service()
 
         file_metadata = drive.files().get(fileId=id).execute()
         file = drive.files().get_media(fileId=id).execute()
-        file = EncryptController.decrypt(file, 'umasenha')
+        file = EncryptController.decrypt(file, flask.session['key'])
 
         return render_template("files-create.jinja", file=file, filename=file_metadata['name'])
 

@@ -8,5 +8,7 @@ createIcons({
 		DoorOpen: icons.DoorOpen,
 		BookLock: icons.BookLock,
 		Plus: icons.Plus,
+		Pin: icons.Pin,
+		PinOff: icons.PinOff,
 	}
 })
