@@ -4,7 +4,8 @@ module.exports = {
 	content: [
 		"./static/css/tailwind.css",
 		"./templates/*.jinja",
-		"./templates/*.html",
+		// "./templates/*.html",
+		"./templates/components/*.jinja",
 	],
 	theme: {
 		extend: {},

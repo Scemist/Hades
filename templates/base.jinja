@@ -19,10 +19,10 @@
 			<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
 
 			<ul class="flex">
-				{{ Nav.button('Files', 'file-stack') }}
-				{{ Nav.button('Connect to Drive', 'plug') }}
-				{{ Nav.button('Disconnect', 'unplug') }}
-				{{ Nav.button('Logout', 'door-open') }}
+				{{ Nav.button('Files', 'file-stack', '/files') }}
+				{{ Nav.button('Connect to Drive', 'plug', '/authorize') }}
+				{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
+				{{ Nav.button('Logout', 'door-open', '/clear') }}
 			</ul>
 		</nav>
 
