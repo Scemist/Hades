@@ -9,9 +9,11 @@ drive_auth = Blueprint('drive_auth', __name__)
 def index():
     return IndexController.index()
 
+
 @drive_auth.route('/key', methods=['POST'])
 def set_key():
     return AuthController.set_key(request.values['key'])
+
 
 @drive_auth.route('/key/clear')
 def destroy_key():
