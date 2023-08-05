@@ -45,7 +45,8 @@ class DriveController:
             .execute()
         )
 
-        return "File created" + IndexController.index()
+        flash("Arquivo criado.")
+        return DriveController.get_file(file["id"])
 
     def store_app_folder():  # Redirect Home
         drive = AuthController.get_drive_service()
