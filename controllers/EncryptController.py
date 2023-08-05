@@ -1,6 +1,7 @@
 import gnupg
 import base64
 from flask import session
+from flask import flash
 
 
 class EncryptController:
@@ -22,6 +23,10 @@ class EncryptController:
         gpg.encoding = "utf-8"
 
         result = gpg.decrypt(file, passphrase=key)
+
+        if not result.ok:
+            flash("Decrypt failed. Is the key correct for this file?")
+
         return result.data.decode("utf-8")
 
     def set_password_cookie(key):
