@@ -45,12 +45,13 @@
 			{% endblock %}
 		</div>
 
+		<div class="hidden bg-red-800 hover:bg-blue-800"></div>
 		{% if get_flashed_messages() %}
-		<div class="absolute bottom-12 right-8 py-4 px-8 shadow bg-blue-800 rounded">
-			{% for message in get_flashed_messages() %}
-			{{ message }}
+			{% for category, message in get_flashed_messages(with_categories=True) %}
+				<div class="absolute bottom-12 right-8 py-4 px-8 shadow rounded {{ category|category_color }}">
+					{{ message }}
+				</div>
 			{% endfor %}
-		</div>
 		{% endif %}
 	</main>
 

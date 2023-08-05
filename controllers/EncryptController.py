@@ -25,7 +25,7 @@ class EncryptController:
         result = gpg.decrypt(file, passphrase=key)
 
         if not result.ok:
-            flash("Decrypt failed. Is the key correct for this file?")
+            flash("Decrypt failed. Is the key correct for this file?", "danger")
 
         return result.data.decode("utf-8")
 
