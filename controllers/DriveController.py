@@ -4,6 +4,7 @@ from flask import render_template
 from flask import Blueprint
 from flask import flash
 from flask import redirect
+from flask import session
 import http.client
 import io
 from datetime import datetime
@@ -23,10 +24,10 @@ from pprint import pprint
 
 
 class DriveController:
-    def store_file(filename, content, key):  # Redirect Home
+    def store_file(filename, content):  # Redirect Home
         drive = AuthController.get_drive_service()
 
-        content = EncryptController.encrypt(filename, content, key)
+        content = EncryptController.encrypt(filename, content, session['key'])
 
         file_metadata = {
             "name": filename,
@@ -99,7 +100,7 @@ class DriveController:
         file = drive.files().get_media(fileId=id).execute()
         file = EncryptController.decrypt(file, flask.session['key'])
 
-        return render_template("files-create.jinja", file=file, filename=file_metadata['name'])
+        return render_template("files-create.jinja", file=file, filename=file_metadata['name'], file_id=id)
 
     def get_files():
         DriveController.get_app_folder()
@@ -120,3 +121,14 @@ class DriveController:
         files['files'] = list(map(get_file_with_datetime, files['files']))
 
         return render_template("files.jinja", files=files["files"])
+
+    def delete_file(id):
+        drive = AuthController.get_drive_service()
+
+        try:
+            drive.files().delete(fileId=id).execute()
+            flash('Arquivo deletado.')
+        except Exception:
+            flash('Ops! Erro ao deletar arquivo.')
+
+        return DriveController.get_files()

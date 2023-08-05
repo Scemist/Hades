@@ -1,6 +1,14 @@
 {% macro button(name, icon, url) -%}
 <li class="mx-3 my-4">
-	<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold" href="{{ url }}">
+	<a class="rounded bg-gray-800 text-gray-300 py-2 px-4 flex items-center font-semibold hover:bg-blue-800 hover:text-blue-200 transition" href="{{ url }}">
+		<i data-lucide="{{ icon }}" class="h-4"></i> {{ name }}
+	</a>
+</li>
+{%- endmacro %}
+
+{% macro accentButton(name, icon, url) -%}
+<li class="mx-3 my-4">
+	<a class="rounded bg-blue-900 text-gray-300 py-2 px-4 flex items-center font-semibold hover:bg-blue-800 hover:text-blue-200 transition" href="{{ url }}">
 		<i data-lucide="{{ icon }}" class="h-4"></i> {{ name }}
 	</a>
 </li>

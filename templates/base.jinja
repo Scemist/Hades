@@ -20,11 +20,21 @@
 		<nav class="flex justify-between">
 			<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
 
-			<ul class="flex">
-				{{ Nav.button('Files', 'file-stack', '/files') }}
-				{{ Nav.button('Connect to Drive', 'plug', '/authorize') }}
-				{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
-				{{ Nav.button('Logout', 'door-open', '/clear') }}
+			<ul class="flex items-center">
+				{% if session['state'] %}
+					{{ Nav.button('Files', 'file-stack', '/files') }}
+					{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
+				{% else %}
+					{{ Nav.button('Connect to Drive', 'plug', '/authorize') }}
+				{% endif %}
+
+				{% if session['key'] %}
+					{{ Nav.button('Logout', 'door-open', '/clear') }}
+				{% endif %}
+
+				<i data-lucide="dot" class="text-gray-400"></i>
+
+				{{ Nav.accentButton('Guide', 'book-key', '/how-to-use') }}
 			</ul>
 		</nav>
 

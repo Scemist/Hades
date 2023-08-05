@@ -23,24 +23,29 @@ def index():
     return DriveController.get_files()
 
 
-@drive.route("/files/<id>", methods=["POST"])
+@drive.route("/files/<id>")
 def get_file(id):
     return DriveController.get_file(id)
+
+
+@drive.route("/files/delete/<id>", methods=["GET", "DELETE"])
+def delete_file(id):
+    return DriveController.delete_file(id)
 
 
 @drive.route("/files/create", methods=["GET", "POST"])
 def create_file():
     if request.method == "POST":
         return DriveController.store_file(
-            request.values["title"], request.values["text_file"], request.values["key"]
+            request.values["title"], request.values["text_file"]
         )
     else:
-        return render_template("create-file.jinja")
+        return render_template("files-create.jinja", create=True)
 
 
-@drive.route("/store_file")
-def store_file():
-    return DriveController.store_file()
+# @drive.route("/store_file")
+# def store_file():
+#     return DriveController.store_file()
 
 
 @drive.route("/folders/create/<folder_name>")

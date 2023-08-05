@@ -7,8 +7,11 @@ createIcons({
 		Plug: icons.Plug,
 		DoorOpen: icons.DoorOpen,
 		BookLock: icons.BookLock,
+		BookKey: icons.BookKey,
+		Dot: icons.Dot,
 		Plus: icons.Plus,
 		Pin: icons.Pin,
 		PinOff: icons.PinOff,
+		Trash: icons.Trash,
 	}
 })
