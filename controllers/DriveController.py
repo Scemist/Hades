@@ -27,12 +27,12 @@ class DriveController:
     def store_file(filename, content):  # Redirect Home
         drive = AuthController.get_drive_service()
 
-        content = EncryptController.encrypt(filename, content, session['key'])
+        content = EncryptController.encrypt(filename, content, session["key"])
 
         file_metadata = {
             "name": filename,
             "mimeType": "text/plain",
-            "parents": [DriveController.get_app_folder()]
+            "parents": [DriveController.get_app_folder()],
         }
 
         media = MediaIoBaseUpload(
@@ -58,7 +58,7 @@ class DriveController:
 
         file = drive.files().create(body=file_metadata, fields="id").execute()
 
-        return file.get('id')
+        return file.get("id")
 
     def get_app_folder():  # Id
         drive = AuthController.get_drive_service()
@@ -91,35 +91,42 @@ class DriveController:
     #     return files
 
     def get_file(id):
-        if not 'key' in flask.session:
-            flash('You need to set and Encrypt Key First.')
-            return redirect('/')
+        if not "key" in flask.session:
+            flash("You need to set and Encrypt Key First.")
+            return redirect("/")
 
         drive = AuthController.get_drive_service()
 
         file_metadata = drive.files().get(fileId=id).execute()
         file = drive.files().get_media(fileId=id).execute()
-        file = EncryptController.decrypt(file, flask.session['key'])
+        file = EncryptController.decrypt(file, flask.session["key"])
 
-        return render_template("files-create.jinja", file=file, filename=file_metadata['name'], file_id=id)
+        return render_template(
+            "files-create.jinja", file=file, filename=file_metadata["name"], file_id=id
+        )
 
     def get_files():
         DriveController.get_app_folder()
 
         drive = AuthController.get_drive_service()
-        files = drive.files().list(
-            q="trashed = false and mimeType != 'application/vnd.google-apps.folder'",
-            fields='files(id, modifiedTime, createdTime, name, starred)').execute()
+        files = (
+            drive.files()
+            .list(
+                q="trashed = false and mimeType != 'application/vnd.google-apps.folder'",
+                fields="files(id, modifiedTime, createdTime, name, starred)",
+            )
+            .execute()
+        )
 
         def get_file_with_datetime(file):
-
             createdTime = datetime.strptime(
-                file['createdTime'], "%Y-%m-%dT%H:%M:%S.%fZ")
-            file['createdTime'] = createdTime.strftime('%d/%m/%Y')
+                file["createdTime"], "%Y-%m-%dT%H:%M:%S.%fZ"
+            )
+            file["createdTime"] = createdTime.strftime("%d/%m/%Y")
 
             return file
 
-        files['files'] = list(map(get_file_with_datetime, files['files']))
+        files["files"] = list(map(get_file_with_datetime, files["files"]))
 
         return render_template("files.jinja", files=files["files"])
 
@@ -128,8 +135,8 @@ class DriveController:
 
         try:
             drive.files().delete(fileId=id).execute()
-            flash('Arquivo deletado.')
+            flash("Arquivo deletado.")
         except Exception:
-            flash('Ops! Erro ao deletar arquivo.')
+            flash("Ops! Erro ao deletar arquivo.")
 
         return DriveController.get_files()

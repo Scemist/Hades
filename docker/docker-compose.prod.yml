@@ -10,8 +10,10 @@ services:
       dockerfile: docker/Python.Prod.Dockerfile
     networks:
       - internal
+    read_only: true
 
   nginx:
+    # read_only: true
     build:
       context: ..
       dockerfile: docker/Nginx.Dockerfile

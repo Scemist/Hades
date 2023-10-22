@@ -14,8 +14,8 @@ drive = Blueprint("drive", __name__)
 @drive.before_request
 def verify_auth():
     if not AuthController.check():
-        flash('User not authenticated.')
-        return redirect('/')
+        flash("User not authenticated.")
+        return redirect("/")
 
 
 @drive.route("/files")
@@ -61,3 +61,7 @@ def get_app_folder():
 @drive.route("/file")
 def file():
     return DriveController.get_file_content()
+
+@drive.route("/info")
+def user_info():
+    return AuthController.get_user_info()
