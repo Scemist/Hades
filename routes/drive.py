@@ -42,6 +42,12 @@ def create_file():
     else:
         return render_template("files-create.jinja", create=True)
 
+@drive.route("/files/<id>/update", methods=["PUT", "POST"])
+def update_file(id):
+    return DriveController.update_file(
+        id, request.values["title"], request.values["text_file"]
+    )
+
 
 # @drive.route("/store_file")
 # def store_file():

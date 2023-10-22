@@ -48,6 +48,28 @@ class DriveController:
         flash("Arquivo criado.")
         return DriveController.get_file(file["id"])
 
+    def update_file(id, filename, content):  # Redirect Home
+        drive = AuthController.get_drive_service()
+        content = EncryptController.encrypt(filename, content, session["key"])
+
+        file_metadata = {
+            "name": filename,
+            "mimeType": "text/plain",
+        }
+
+        media = MediaIoBaseUpload(
+            io.BytesIO(content), mimetype=file_metadata.get("mimeType")
+        )
+
+        file = (
+            drive.files()
+            .update(fileId=id, body=file_metadata, media_body=media)
+            .execute()
+        )
+
+        flash("Arquivo atualizado.")
+        return DriveController.get_file(file["id"])
+
     def store_app_folder():  # Redirect Home
         drive = AuthController.get_drive_service()
 
