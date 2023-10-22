@@ -1,6 +1,7 @@
 .env/
 drive-client-secret.json
 node_modules
+flask_session/
 package-lock.json
 static/build/
 
