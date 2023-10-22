@@ -25,4 +25,44 @@
 		</fieldset>
 	</form>
 </section>
+
+{% if session['state'] %}
+<section class=" rounded p-6 m-6 w-8/12 mx-auto hidden">
+	<h3 class="font-mono text-xl">Access using your Google Account</h3>
+	<p class="text-zinc-500 pt-2">
+		All files are stored in your Google Drive, accesible for you.
+	</p>
+
+	<h3 class="font-mono text-xl pt-10">All Files in Your Account</h3>
+	<p class="text-zinc-500 pt-2">
+		Once Hades doesn't have database, you revoke Hades access every logout.
+	</p>
+
+	<h3 class="font-mono text-xl pt-10">Set or Change a Encryptation Key</h3>
+	<p class="text-zinc-500 pt-2">
+		You can use different keys for different files.
+	</p>
+
+	<h3 class="font-mono text-xl pt-10">Hades Can Only Access Files Created By It</h3>
+	<p class="text-zinc-500 pt-2">
+		The Google Drive Scope Does't Allow Access to Other Files or Folders in Your Drive.
+	</p>
+
+	<h3 class="font-mono text-xl pt-10">Secure Even with Google Drive Access</h3>
+	<p class="text-zinc-500 pt-2">
+		Without the key, even with access in your Google Drive, it cannot be read.
+	</p>
+</section>
+
+	<a class="flex items-center font-semibold text-gray-500 hover:text-blue-700 transition" href="https://github.com/Scemist/Hades.git" >
+<footer class="absolute bottom-0 box-border left-0 right-0 flex py-3 bg-gray-800 rounded-t justify-center gap-5">
+		<i data-lucide="github" class="h-7 mr-2"></i> Source Code at Github
+	</a>
+	<a class="flex items-center font-semibold text-gray-500 hover:text-blue-700 transition" href="">
+
+		<i data-lucide="book-key" class="h-7 mr-2"></i> How to Use
+	</a>
+</footer>
+{% endif %}
+
 {% endblock %}

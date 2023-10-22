@@ -13,5 +13,6 @@ createIcons({
 		Pin: icons.Pin,
 		PinOff: icons.PinOff,
 		Trash: icons.Trash,
+		Github: icons.Github,
 	}
 })
