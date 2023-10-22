@@ -25,16 +25,15 @@
 					{{ Nav.button('Files', 'file-stack', '/files') }}
 					{{ Nav.button('Logout', 'door-open', '/clear') }}
 				{% else %}
-					{{ Nav.button('Connect to Drive', 'plug', '/authorize') }}
+					{{ Nav.button('Login', 'plug', '/authorize') }}
 				{% endif %}
 
-				{% if session['key'] %}
+				{# {% if session['key'] %}
 					{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
-				{% endif %}
+				{% endif %} #}
 
-				<i data-lucide="dot" class="text-gray-400"></i>
+				{# <i data-lucide="dot" class="text-gray-400"></i> #}
 
-				{{ Nav.accentButton('Guide', 'book-key', '/how-to-use') }}
 
 				{% if session["user"] %}
 					<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{ session["user"]["displayName"] }}'>
