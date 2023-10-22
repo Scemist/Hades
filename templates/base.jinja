@@ -36,7 +36,9 @@
 
 				{{ Nav.accentButton('Guide', 'book-key', '/how-to-use') }}
 
-				<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{{ session["user"]["displayName"] }}'>
+				{% if session["user"] %}
+					<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{ session["user"]["displayName"] }}'>
+				{% endif %}
 			</ul>
 		</nav>
 
@@ -47,7 +49,7 @@
 			{% endblock %}
 		</div>
 
-		<div class="hidden bg-red-800 hover:bg-blue-800"></div>
+		<div class="hidden bg-red-800 bg-blue-800"></div>
 		{% if get_flashed_messages() %}
 			{% for category, message in get_flashed_messages(with_categories=True) %}
 				<div class="absolute bottom-12 right-8 py-4 px-8 shadow rounded {{ category|category_color }}">
