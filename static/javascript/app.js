@@ -14,5 +14,6 @@ createIcons({
 		PinOff: icons.PinOff,
 		Trash: icons.Trash,
 		Github: icons.Github,
+		Book: icons.Book,
 	}
 })

@@ -35,11 +35,6 @@ def oauth2callback():
     return AuthController.oauth2callback()
 
 
-# @drive_auth.route('/revoke')
-# def revoke():
-#     return AuthController.revoke()
-
-
 @drive_auth.route('/clear')
 def clear_credentials():
     return AuthController.clear_credentials()

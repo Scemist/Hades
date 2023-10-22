@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-zinc-900 text-zinc-300 flex flex-nowrap justify-center">
-	<main style="max-width: 1200px" class="flex-1 p-3 relative h-screen">
+	<main style="max-width: 1200px" class="flex-1 p-3 relative min-h-screen">
 		<nav class="flex justify-between">
 			<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
 
@@ -27,13 +27,6 @@
 				{% else %}
 					{{ Nav.button('Login', 'plug', '/authorize') }}
 				{% endif %}
-
-				{# {% if session['key'] %}
-					{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
-				{% endif %} #}
-
-				{# <i data-lucide="dot" class="text-gray-400"></i> #}
-
 
 				{% if session["user"] %}
 					<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{ session["user"]["displayName"] }}'>
