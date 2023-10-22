@@ -18,7 +18,7 @@
 
 	<form class="flex items-end gap-2" action="/key" method="POST">
 		<fieldset class="flex-1 mb-6 flex flex-col">
-			<input type="password" class="py-1 px-3 shadow border border-gray-900 rounded bg-gray-900 font-bold" name="key" autocomplete="off">
+			<input type="password" placeholder="{{ '•••••••••••••••••' if key_setted else '' }}" class="py-1 px-3 shadow border border-gray-900 rounded bg-gray-900 font-bold tracking-widest" name="key" autocomplete="off">
 		</fieldset>
 
 		<fieldset class="mb-6 flex justify-end">
