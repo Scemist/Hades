@@ -21,6 +21,11 @@ class AuthController:
                 'client_secret': credentials.client_secret,
                 'scopes': credentials.scopes}
 
+    def get_user_info(): # User object
+        drive = AuthController.get_drive_service()
+        response = drive.about().get(fields="user").execute()
+        return response["user"]
+
     def authorize():
         flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
             CLIENT_SECRETS_FILE, scopes=SCOPES)
@@ -54,6 +59,7 @@ class AuthController:
         flask.session['credentials'] = AuthController.credentials_to_dict(
             credentials)
 
+        flask.session['user'] = AuthController.get_user_info()
         flask.flash('Authorization Successfully.')
         return flask.redirect('/')
 

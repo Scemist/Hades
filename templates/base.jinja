@@ -23,18 +23,20 @@
 			<ul class="flex items-center">
 				{% if session['state'] %}
 					{{ Nav.button('Files', 'file-stack', '/files') }}
-					{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
+					{{ Nav.button('Logout', 'door-open', '/clear') }}
 				{% else %}
 					{{ Nav.button('Connect to Drive', 'plug', '/authorize') }}
 				{% endif %}
 
 				{% if session['key'] %}
-					{{ Nav.button('Logout', 'door-open', '/clear') }}
+					{{ Nav.button('Disconnect', 'unplug', '/revoke') }}
 				{% endif %}
 
 				<i data-lucide="dot" class="text-gray-400"></i>
 
 				{{ Nav.accentButton('Guide', 'book-key', '/how-to-use') }}
+
+				<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{{ session["user"]["displayName"] }}'>
 			</ul>
 		</nav>
 
