@@ -17,28 +17,15 @@
 
 <body class="bg-zinc-900 text-zinc-300 flex flex-nowrap justify-center">
 	<main style="max-width: 1200px" class="flex-1 p-3 relative min-h-screen">
-		<nav class="flex justify-between">
-			<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
-
-			<ul class="flex items-center">
-				{% if session['state'] %}
-					{{ Nav.button('Files', 'file-stack', '/files') }}
-					{{ Nav.button('Logout', 'door-open', '/clear') }}
-				{% else %}
-					{{ Nav.button('Login', 'plug', '/authorize') }}
-				{% endif %}
-
-				{% if session["user"] %}
-					<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{ session["user"]["displayName"] }}'>
-				{% endif %}
-			</ul>
-		</nav>
+		{% include 'nav.jinja' %}
 
 		<hr class="bg-none border-t-2 border-gray-700">
 
 		<div>
 			{% block content %}
 			{% endblock %}
+
+			{% include 'footer.jinja' %}
 		</div>
 
 		<div class="hidden bg-red-800 bg-blue-800"></div>

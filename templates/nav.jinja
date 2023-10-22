@@ -1,0 +1,16 @@
+<nav class="flex justify-between">
+	<a href="/" class="text-5xl font-semibold mb-3 flex items-center"><i data-lucide="book-lock" class="h-10 w-10 mr-2"></i> Hades</a>
+
+	<ul class="flex items-center">
+		{% if session['state'] %}
+			{{ Nav.button('Files', 'file-stack', '/files') }}
+			{{ Nav.button('Logout', 'door-open', '/clear') }}
+		{% else %}
+			{{ Nav.button('Login', 'plug', '/authorize') }}
+		{% endif %}
+
+		{% if session["user"] %}
+			<img src="{{ session['user']['photoLink'] }}" class="ms-2 rounded-full w-11 border border-gray-700" alt='{ session["user"]["displayName"] }}'>
+		{% endif %}
+	</ul>
+</nav>
