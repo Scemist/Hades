@@ -3,6 +3,7 @@
 
 	<ul class="flex items-center">
 		{% if session['state'] %}
+			{{ Nav.button('Pass', 'key', '/') }}
 			{{ Nav.button('Files', 'file-stack', '/files') }}
 			{{ Nav.button('Logout', 'door-open', '/clear') }}
 		{% else %}

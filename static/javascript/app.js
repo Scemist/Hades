@@ -15,5 +15,6 @@ createIcons({
 		Trash: icons.Trash,
 		Github: icons.Github,
 		Book: icons.Book,
+		Key: icons.Key,
 	}
 })
