@@ -10,6 +10,7 @@
 - **Google Drive Api** - as Storage
 - **GPG AES256** - as Encryption Tool and Algorithm
 - **TailwindCSS** - as Front-end Framework
+- **Docker Compose** - as Application Infrastructure
 
 ## Privacidade
 
